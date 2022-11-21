@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_mhs"
+    app:startDestination="@id/listJobFragment">
+
+    <fragment
+        android:id="@+id/listJobFragment"
+        android:name="com.pmsi.lamaruin.ui.mahasiswa.listJob.ListJobFragment"
+        android:label="@string/listJob"
+        tools:layout="@layout/fragment_list_job" />
+
+    <fragment
+        android:id="@+id/appliedFragment"
+        android:name="com.pmsi.lamaruin.ui.mahasiswa.applied.AppliedFragment"
+        android:label="@string/applied"
+        tools:layout="@layout/fragment_applied" />
+
+    <fragment
+        android:id="@+id/profilFragment"
+        android:name="com.pmsi.lamaruin.ui.mahasiswa.profil.ProfilFragment"
+        android:label="@string/profil"
+        tools:layout="@layout/fragment_profil" />
+</navigation>
