@@ -13,4 +13,11 @@
     <string name="contoh_kualifikasi">- Laki - laki \n- Usia max 35th \n- Good Attitude \n- Good Comunication \n- Tebiasa dengan target \n- Pendidikan min s1 segala jurusan \n- Berpengalaman di bidang yang sama min 1 tahun \n- Siap bekerja didalam tekanan \n- Bersedia ditempatkan di Bali</string>
     <string name="deskripsi_pekerjaan">Deskripsi Pekerjaan</string>
     <string name="contoh_deskripsi_job">- Membuat report pengerjaan dan penggunaan material lengkap dan benar \n- Melakukan monitoring project berjalan sesuai dengan permintaan dan tepat waktu \n- Mengontrol persiapan dokumen dari preparation sampai handover ke pihak construction dan kontraktor \n- Melakukan koordinasi untuk pengurusan permit ke all PU Bali \n- Melakukan monitoring progress dan melakukan serah terima ke bagian operation</string>
+    <string name="lamaruin">LamarUIN</string>
+    <string name="login_recruiter">Login as Recruiter</string>
+    <string name="username">Username</string>
+    <string name="password">password</string>
+    <string name="login">Login</string>
+    <string name="login_student">Login as Student</string>
+    <string name="input_job">Input Job</string>
 </resources>
