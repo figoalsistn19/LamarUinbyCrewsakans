@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.recruiter.profile.InputJobFragment">
+    tools:context=".ui.recruiter.profile.InputJobActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -113,6 +113,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
