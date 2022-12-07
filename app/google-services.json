@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "133673127868",
+    "project_id": "lamaruin-92998",
+    "storage_bucket": "lamaruin-92998.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:133673127868:android:7e4329641f7e380186a5b9",
+        "android_client_info": {
+          "package_name": "com.pmsi.lamaruin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "133673127868-eah4o6k7n1cbr859mnh34gm8uhpep2n9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmeERdmty4gR63H6sAvIIfDEQOkRweZzs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "133673127868-eah4o6k7n1cbr859mnh34gm8uhpep2n9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
