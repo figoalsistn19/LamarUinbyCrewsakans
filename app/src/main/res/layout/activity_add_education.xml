@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.mahasiswa.profil.AddEducationActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tbAddEducation"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/purple_500"
+        android:minHeight="?attr/actionBarSize"
+        android:orientation="horizontal"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="4dp"
+            android:padding="5dp"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="Add Education"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="null"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_baseline_check_24"
+            app:layout_constraintBottom_toBottomOf="@+id/textView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tvMajor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:text="Major"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edit_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:layout_marginTop="5dp"
+        android:layout_marginHorizontal="15dp"
+        android:paddingVertical="3dp"
+        android:paddingHorizontal="10dp"
+        android:textSize="14sp"
+        android:hint="ex : Sistem Informasi"
+        android:background="@drawable/custom_rounded_stroke_grey" />
+
+    <TextView
+        android:id="@+id/tvDegree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:text="Degree"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edit_degree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:layout_marginTop="5dp"
+        android:layout_marginHorizontal="15dp"
+        android:paddingVertical="3dp"
+        android:paddingHorizontal="10dp"
+        android:textSize="14sp"
+        android:hint="ex : Bachelor Degree"
+        android:background="@drawable/custom_rounded_stroke_grey" />
+
+    <TextView
+        android:id="@+id/tvUniv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:text="University / School"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edit_university"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:layout_marginTop="5dp"
+        android:layout_marginHorizontal="15dp"
+        android:paddingVertical="3dp"
+        android:paddingHorizontal="10dp"
+        android:textSize="14sp"
+        android:hint="ex : Sistem Informasi"
+        android:background="@drawable/custom_rounded_stroke_grey" />
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:text="Date"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="15dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            style="@style/Base.Widget.AppCompat.ImageButton"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="Start Date"
+            android:src="@drawable/ic_date" />
+
+        <TextView
+            android:id="@+id/add_tv_start_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start Date" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="15dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            style="@style/Base.Widget.AppCompat.ImageButton"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="Start Date"
+            android:src="@drawable/ic_date" />
+
+        <TextView
+            android:id="@+id/add_tv_end_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="End Date" />
+    </LinearLayout>
+</LinearLayout>

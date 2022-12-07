@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_baseline_brightness_1_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tahun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="2019 - 2022"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintTop_toTopOf="@+id/imageView5" />
+
+    <TextView
+        android:id="@+id/namaPerusahaan"
+        android:layout_width="wrap_content"
+        android:maxWidth="300dp"
+        android:layout_height="wrap_content"
+        android:text="UIN Syarif Hidayatullah Jakarta"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/tahun"
+        app:layout_constraintTop_toBottomOf="@+id/tahun" />
+
+    <TextView
+        android:id="@+id/posisi"
+        android:maxWidth="300dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Administrasi"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="@+id/namaPerusahaan"
+        app:layout_constraintTop_toBottomOf="@+id/namaPerusahaan" />
+
+    <TextView
+        android:id="@+id/deskripsiExperience"
+        android:layout_width="wrap_content"
+        android:maxWidth="300dp"
+        android:layout_height="wrap_content"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ligula enim, varius et tortor finibus, vehicula viverra sem."
+        android:layout_marginTop="5dp"
+        android:textSize="11sp"
+        app:layout_constraintStart_toStartOf="@+id/posisi"
+        app:layout_constraintTop_toBottomOf="@+id/posisi" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

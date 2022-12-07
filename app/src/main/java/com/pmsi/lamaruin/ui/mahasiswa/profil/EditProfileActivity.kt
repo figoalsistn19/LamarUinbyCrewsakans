@@ -1,11 +1,12 @@
-package com.crewsakans.lamaruin
+package com.pmsi.lamaruin.ui.mahasiswa.profil
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.pmsi.lamaruin.R
 
-class MainActivity : AppCompatActivity() {
+class EditProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_edit_profile)
     }
 }

@@ -54,7 +54,7 @@
         <ImageView
             android:layout_width="130dp"
             android:layout_height="100dp"
-            tools:src="@drawable/logobca"
+            tools:src="@drawable/logo_bca"
             android:layout_marginEnd="20dp"/>
         <LinearLayout
             android:layout_width="match_parent"
@@ -108,5 +108,16 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPagerDetailJob"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="450dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:textColor="@color/white"
+        android:paddingHorizontal="40dp"
+        android:textSize="18sp"
+        android:paddingVertical="5dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/custom_btn_rounded"/>
 </LinearLayout>
