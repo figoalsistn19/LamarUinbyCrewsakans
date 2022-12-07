@@ -20,4 +20,13 @@
     <string name="login">Login</string>
     <string name="login_student">Login as Student</string>
     <string name="input_job">Input Job</string>
+    <string-array name="Languages">
+        <item>Java</item>
+        <item>Kotlin</item>
+        <item>Swift</item>
+        <item>Python</item>
+        <item>Scala</item>
+        <item>Perl</item>
+    </string-array>
+    <string name="selected_item">Selected item:</string>
 </resources>
