@@ -37,7 +37,7 @@ class ProfilFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val id = LoginPref(requireActivity()).getIdMhs().toString()
-        if(id != null){setProfil(id)}
+        setProfil(id)
     }
 
 
@@ -64,15 +64,40 @@ class ProfilFragment : Fragment() {
                             binding.linearDetailProfile.isVisible = false
                         }
                 }
-//        else if(statAddProfile != null && statAddProfile == true){
-//            service.searchUsersById()
-//        }
+                else if(statAddProfile != null && statAddProfile == true){
+                    service.searchUsersById(id)
+                        .get()
+                        .addOnSuccessListener{
+                            var nama = it.getString("name")
+                            var email = it.getString("email")
+                            var foto = it.getString("foto")
+                            var description = it.getString("description")
+                            var address = it.getString("address")
+                            var phone = it.getString("phone")
+                            var interest = it.getString("interest")
+                            var skill = it.getString("skill")
+
+                            binding.ivProfile.load(foto){
+                                transformations(CircleCropTransformation())
+                            }
+                            binding.apply{
+                                tvNamaMahasiswa.text = nama
+                                tvEmailMhs.text = email
+                                tvAddressUser.text = address
+                                tvDescUser.text = description
+                                tvPhoneUser.text = phone
+                                tvInterestUser.text = interest
+                                tvSkillUser.text = skill
+                                tvSilakanLengkapi.isVisible = false
+                            }
+                        }
+                }
             }
     }
 
     override fun onResume() {
         super.onResume()
-        val id = LoginPref(requireActivity()).getIdMhs()
-        if(id != null){setProfil(id)}
+        val id = LoginPref(requireActivity()).getIdMhs().toString()
+        setProfil(id)
     }
 }
