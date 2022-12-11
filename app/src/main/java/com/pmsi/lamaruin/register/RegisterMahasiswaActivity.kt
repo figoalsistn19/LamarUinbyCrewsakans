@@ -76,6 +76,7 @@ class RegisterMahasiswaActivity : AppCompatActivity() {
                                 username,
                                 name,
                                 email,
+                                foto = "https://i.pinimg.com/474x/86/ea/e3/86eae3d8abc2362ad6262916cb950640.jpg",
                                 password_student = password,
                                 addProfile = false
                             )

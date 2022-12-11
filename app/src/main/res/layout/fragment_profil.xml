@@ -34,7 +34,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/ivProfile"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="20dp"
@@ -44,44 +44,31 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/tvNamaMahasiswa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxWidth="300dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="8dp"
                 android:text="Annisa Rosdiyana"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:singleLine="true"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
-                app:layout_constraintTop_toTopOf="@+id/imageView2" />
+                app:layout_constraintStart_toEndOf="@+id/ivProfile"
+                app:layout_constraintTop_toTopOf="@+id/ivProfile" />
 
             <TextView
-                android:id="@+id/textView4"
-                android:singleLine="true"
-                android:maxWidth="300dp"
+                android:id="@+id/tvEmailMhs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:text="annisaarss"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@+id/textView3"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3sp"
                 android:maxWidth="300dp"
                 android:singleLine="true"
+                android:layout_marginTop="10dp"
                 android:text="annisarosdiyana17@gmail.com"
                 android:textColor="@color/white"
                 android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@+id/textView4"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                app:layout_constraintStart_toStartOf="@+id/tvNamaMahasiswa"
+                app:layout_constraintTop_toBottomOf="@+id/tvNamaMahasiswa" />
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -99,177 +86,192 @@
                 android:layout_marginEnd="15dp"
                 android:src="@drawable/ic_baseline_edit_24"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView5" />
+                app:layout_constraintTop_toTopOf="@+id/tvEmailMhs" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
+            android:id="@+id/tvSilakanLengkapi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Description"
-            android:textStyle="bold"
-            android:textSize="13sp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp"/>
-
-        <TextView
-            android:id="@+id/tv_desc_user"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="10dp"
-            android:paddingHorizontal="10dp"
-            android:background="@drawable/custom_rounded_stroke_grey"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ligula enim, varius et tortor finibus, vehicula viverra sem."
-            android:paddingVertical="5dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Address"
-            android:textStyle="bold"
-            android:textSize="13sp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp"/>
-
-        <TextView
-            android:id="@+id/tv_address_user"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="10dp"
-            android:paddingHorizontal="10dp"
-            android:background="@drawable/custom_rounded_stroke_grey"
-            android:text="21 13th Street SE, Harwood,nd, 58042  United States"
-            android:paddingVertical="5dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Phone Number"
-            android:textStyle="bold"
-            android:textSize="13sp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp"/>
-
-        <TextView
-            android:id="@+id/tv_phone_user"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="10dp"
-            android:paddingHorizontal="10dp"
-            android:background="@drawable/custom_rounded_stroke_grey"
-            android:text="089829182839"
-            android:paddingVertical="5dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Interest"
-            android:textStyle="bold"
-            android:textSize="13sp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp"/>
-
-        <TextView
-            android:id="@+id/tv_interest_user"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="10dp"
-            android:paddingHorizontal="10dp"
-            android:background="@drawable/custom_rounded_stroke_grey"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-            android:paddingVertical="5dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Skill"
-            android:textStyle="bold"
-            android:textSize="13sp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp"/>
-
-        <TextView
-            android:id="@+id/tv_skill_user"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="10dp"
-            android:paddingHorizontal="10dp"
-            android:background="@drawable/custom_rounded_stroke_grey"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-            android:paddingVertical="5dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CV"
-            android:textStyle="bold"
-            android:textSize="13sp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp"/>
+            android:text="Silakan Lengkapi Profile Anda"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:visibility="gone"/>
 
         <LinearLayout
+            android:id="@+id/linearDetailProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="20dp">
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
             <TextView
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="5dp"
-                android:text="namafile.pdf"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/custom_rounded_stroke_grey"/>
-            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:src="@drawable/ic_baseline_file_open_24"
-                android:background="@color/purple_500"
-                android:padding="5dp"/>
+                android:text="Description"
+                android:textStyle="bold"
+                android:textSize="13sp"
+                android:layout_marginStart="30dp"/>
+
+            <TextView
+                android:id="@+id/tv_desc_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:paddingHorizontal="10dp"
+                android:background="@drawable/custom_rounded_stroke_grey"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ligula enim, varius et tortor finibus, vehicula viverra sem."
+                android:paddingVertical="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address"
+                android:textStyle="bold"
+                android:textSize="13sp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/tv_address_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:paddingHorizontal="10dp"
+                android:background="@drawable/custom_rounded_stroke_grey"
+                android:text="21 13th Street SE, Harwood,nd, 58042  United States"
+                android:paddingVertical="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone Number"
+                android:textStyle="bold"
+                android:textSize="13sp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/tv_phone_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:paddingHorizontal="10dp"
+                android:background="@drawable/custom_rounded_stroke_grey"
+                android:text="089829182839"
+                android:paddingVertical="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Interest"
+                android:textStyle="bold"
+                android:textSize="13sp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/tv_interest_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:paddingHorizontal="10dp"
+                android:background="@drawable/custom_rounded_stroke_grey"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                android:paddingVertical="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Skill"
+                android:textStyle="bold"
+                android:textSize="13sp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/tv_skill_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:paddingHorizontal="10dp"
+                android:background="@drawable/custom_rounded_stroke_grey"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                android:paddingVertical="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CV"
+                android:textStyle="bold"
+                android:textSize="13sp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="20dp">
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="5dp"
+                    android:text="namafile.pdf"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/custom_rounded_stroke_grey"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/ic_baseline_file_open_24"
+                    android:background="@color/purple_500"
+                    android:padding="5dp"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Education"
+                android:textStyle="bold"
+                android:textSize="13sp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvListEducation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="10dp"
+                android:background="@drawable/custom_rounded_stroke_grey"
+                android:paddingVertical="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Experience"
+                android:textStyle="bold"
+                android:textSize="13sp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvListExperience"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="10dp"
+                android:background="@drawable/custom_rounded_stroke_grey"
+                android:paddingVertical="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="20dp"/>
         </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Education"
-            android:textStyle="bold"
-            android:textSize="13sp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvListEducation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="10dp"
-            android:background="@drawable/custom_rounded_stroke_grey"
-            android:paddingVertical="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="20dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Experience"
-            android:textStyle="bold"
-            android:textSize="13sp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvListExperience"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="10dp"
-            android:background="@drawable/custom_rounded_stroke_grey"
-            android:paddingVertical="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="20dp"/>
     </LinearLayout>
 </ScrollView>

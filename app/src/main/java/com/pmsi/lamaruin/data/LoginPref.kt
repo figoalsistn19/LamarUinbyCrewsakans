@@ -15,7 +15,7 @@ class LoginPref(context : Context) {
 
     fun setIdMhs(idMhs: String){
         val editor = prefIdMahasiswa.edit()
-        editor.putString(SESSION, idMhs)
+        editor.putString(ID_MHS, idMhs)
         editor.apply()
     }
 

@@ -29,7 +29,7 @@ class FirestoreService {
 
     fun searchUsersById(id: String) =
         db.collection("student")
-            .whereEqualTo("id_student", id)
+            .document(id)
 
     fun addRecruiter(recruiter: CreateRecruiter, listen: (String) -> Unit) =
         db.collection("recruiter")

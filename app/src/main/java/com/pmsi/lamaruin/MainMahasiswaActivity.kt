@@ -15,7 +15,9 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.pmsi.lamaruin.databinding.ActivityMainMahasiswaBinding
 import com.pmsi.lamaruin.utils.hideKeyboard
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainMahasiswaActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var binding: ActivityMainMahasiswaBinding

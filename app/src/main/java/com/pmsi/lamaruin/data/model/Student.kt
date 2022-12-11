@@ -4,6 +4,7 @@ data class CreateStudent constructor(
     var username_student: String = "",
     var name: String?= "",
     var email: String = "",
+    var foto: String = "",
     var id_student: String = "",
     var password_student: String = "",
     var addProfile: Boolean = false
