@@ -14,6 +14,7 @@ import com.pmsi.lamaruin.data.remote.FirestoreService
 import com.pmsi.lamaruin.databinding.ActivityRegisterMahasiswaBinding
 import com.pmsi.lamaruin.databinding.ActivityRegisterRecruiterBinding
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -35,7 +36,7 @@ class RegisterRecruiterActivity : AppCompatActivity() {
     }
 
     private fun registerRecruiter() {
-        binding.progressBar.isVisible = false
+        binding.progressBar.isVisible = true
 
         val username = binding.inputUsername.text.toString()
         val name = binding.inputRecName.text.toString()
@@ -78,27 +79,48 @@ class RegisterRecruiterActivity : AppCompatActivity() {
                                 Toast.LENGTH_LONG
                             ).show()
                         } else {
-                            val recruiters = CreateRecruiter(
-                                username,
-                                name,
-                                email,
-                                noHp,
-                                password_student = password
-                            )
+                            service.searchKodeAkses(kodeAkses)
+                                .get()
+                                .addOnSuccessListener {
+                                    if (it != null && it.documents.isNotEmpty()) {
+                                        val id_kode = it.documents[0].id
 
-                            service.addRecruiter(recruiters) { id ->
-                                LoginPref(this@RegisterRecruiterActivity).setSession(true)
-                                binding.progressBar.isVisible = false
-//                                Intent(this, MainRecruiterActivity::class.java).apply {
-//                                    putExtra("user_id", id)
-//                                    startActivity(this)
-//                                }
-                                Toast.makeText(
-                                    this@RegisterRecruiterActivity,
-                                    "Berhasil Resister",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
+                                        // ubah status penggunaan kode akses
+                                        service.updateStatusKode(id_kode)
+
+                                        val recruiters = CreateRecruiter(
+                                            username,
+                                            name,
+                                            email,
+                                            noHp,
+                                            password_student = password
+                                        )
+
+                                        // input ke collection recruiter
+                                        service.addRecruiter(recruiters) { id ->
+                                            LoginPref(this@RegisterRecruiterActivity).setSession(
+                                                true
+                                            )
+                                            binding.progressBar.isVisible = false
+//                                            Intent(this, MainRecruiterActivity::class.java).apply {
+//                                                putExtra("user_id", id)
+//                                                startActivity(this)
+//                                            }
+                                            Toast.makeText(
+                                                this@RegisterRecruiterActivity,
+                                                "Berhasil Register",
+                                                Toast.LENGTH_LONG
+                                            ).show()
+                                        }
+                                    } else {
+                                        binding.progressBar.isVisible = false
+                                        Toast.makeText(
+                                            this@RegisterRecruiterActivity,
+                                            "Kode Akses Salah",
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                    }
+                                }
                         }
                     }
             }

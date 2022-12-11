@@ -23,10 +23,13 @@ class FirestoreService {
             .document(student.id_student)
             .set(student)
 
-    fun searchUsers(username: String, email: String) =
+    fun searchUsers(email: String) =
         db.collection("student")
-            .whereEqualTo("username", username)
             .whereEqualTo("email", email)
+
+    fun searchUsersById(id: String) =
+        db.collection("student")
+            .whereEqualTo("id_student", id)
 
     fun addRecruiter(recruiter: CreateRecruiter, listen: (String) -> Unit) =
         db.collection("recruiter")
@@ -42,4 +45,13 @@ class FirestoreService {
         db.collection("recruiter")
             .whereEqualTo("username", username)
             .whereEqualTo("email", email)
+
+    fun searchKodeAkses(kode: String) =
+        db.collection("kode")
+            .whereEqualTo("kode", kode)
+            .whereEqualTo("used", false)
+
+    fun updateStatusKode(id_kode: String) =
+        db.collection("kode").document(id_kode)
+            .update("used", true)
 }

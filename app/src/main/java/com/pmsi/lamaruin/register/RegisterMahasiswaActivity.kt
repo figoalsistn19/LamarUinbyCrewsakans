@@ -32,7 +32,7 @@ class RegisterMahasiswaActivity : AppCompatActivity() {
     }
 
     private fun register() {
-        binding.progressBar.isVisible = false
+        binding.progressBar.isVisible = true
 
         val username = binding.inputUsername.text.toString()
         val name = binding.inputName.text.toString()
@@ -60,13 +60,14 @@ class RegisterMahasiswaActivity : AppCompatActivity() {
                 binding.confirmPass.error = "Password tidak sama"
             }
             else -> {
-                service.searchUsers(username, email)
+                service.searchUsers(email)
                     .get()
                     .addOnSuccessListener {
                         if (it != null && it.documents.isNotEmpty()) {
+                            binding.progressBar.isVisible = false
                             Toast.makeText(
                                 this@RegisterMahasiswaActivity,
-                                "Akun sudah ada",
+                                "Email sudah terdaftar",
                                 Toast.LENGTH_LONG
                             ).show()
                         }
@@ -75,19 +76,24 @@ class RegisterMahasiswaActivity : AppCompatActivity() {
                                 username,
                                 name,
                                 email,
-                                password_student = password
+                                password_student = password,
+                                addProfile = false
                             )
 
                             service.addStudent(users) { id ->
-                                LoginPref(this@RegisterMahasiswaActivity).setSession(true)
+                                LoginPref(this@RegisterMahasiswaActivity).apply {
+                                    setSession(true)
+                                    setIdMhs(id)
+                                    setNamaMhs(name)
+                                }
+                                LoginPref(this@RegisterMahasiswaActivity)
                                 binding.progressBar.isVisible = false
                                 Intent(this, MainMahasiswaActivity::class.java).apply {
-                                    putExtra("user_id", id)
                                     startActivity(this)
                                 }
                                 Toast.makeText(
                                     this@RegisterMahasiswaActivity,
-                                    "Berhasil Resister",
+                                    "Berhasil Register",
                                     Toast.LENGTH_LONG
                                 ).show()
                             }
