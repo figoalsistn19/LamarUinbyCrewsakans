@@ -29,6 +29,13 @@ class RegisterMahasiswaActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         binding.btnRegister.setOnClickListener{ register() }
+
+        val loginPref = LoginPref(this)
+        val isLogin = loginPref.getSession()
+        if (!isLogin) {
+            startActivity(Intent(this, MainMahasiswaActivity::class.java))
+            finish()
+        }
     }
 
     private fun register() {

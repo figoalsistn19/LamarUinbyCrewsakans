@@ -39,6 +39,8 @@ class LoginPref(context : Context) {
 
     fun logout(){
         prefIsLogin.edit().clear().apply()
+        prefIdMahasiswa.edit().clear().apply()
+        prefNamaMahasiswa.edit().clear().apply()
     }
 
     companion object {

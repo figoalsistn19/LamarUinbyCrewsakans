@@ -1,5 +1,6 @@
 package com.pmsi.lamaruin.ui.mahasiswa.profil
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import com.pmsi.lamaruin.R
 import com.pmsi.lamaruin.data.LoginPref
 import com.pmsi.lamaruin.data.remote.FirestoreService
 import com.pmsi.lamaruin.databinding.FragmentProfilBinding
+import com.pmsi.lamaruin.register.RegisterMahasiswaActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -38,6 +40,14 @@ class ProfilFragment : Fragment() {
 
         val id = LoginPref(requireActivity()).getIdMhs().toString()
         setProfil(id)
+
+        binding.apply {
+            logout.setOnClickListener { logout() }
+            editProfile.setOnClickListener {
+                val intent = Intent(requireActivity(), EditProfileActivity::class.java)
+                startActivity(intent)
+            }
+        }
     }
 
 
@@ -93,6 +103,14 @@ class ProfilFragment : Fragment() {
                         }
                 }
             }
+    }
+
+    private fun logout(){
+        val isLogin = LoginPref(requireActivity())
+        isLogin.logout()
+        val i = Intent(requireActivity(), RegisterMahasiswaActivity::class.java)
+        i.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(i)
     }
 
     override fun onResume() {
