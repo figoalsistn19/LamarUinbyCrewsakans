@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_rec"
+    app:startDestination="@id/activeListingFragment">
+
+    <fragment
+        android:id="@+id/activeListingFragment"
+        android:name="com.pmsi.lamaruin.ui.recruiter.activelisting.ActiveListinggFragment"
+        android:label="@string/listJob"
+        tools:layout="@layout/fragment_active_listingg" />
+    <fragment
+        android:id="@+id/listJobFragment2"
+        android:name="com.pmsi.lamaruin.ui.recruiter.listJob.ListJobRecFragment"
+        android:label="@string/activelisting"
+        tools:layout="@layout/fragment_list_job_rec"/>
+    <fragment
+        android:id="@+id/profileRecFragment"
+        android:name="com.pmsi.lamaruin.ui.recruiter.profile.ProfileRecrFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile_recr" />
+</navigation>

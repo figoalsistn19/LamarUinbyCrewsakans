@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/listJobFragment2"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="@string/listJob" />
+
+    <item
+        android:id="@+id/activeListingFragment"
+        android:icon="@drawable/ic_baseline_library_books_24"
+        android:title="@string/activelisting" />
+
+    <item
+        android:id="@+id/profileRecFragment"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="@string/profile" />
+</menu>

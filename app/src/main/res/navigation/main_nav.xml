@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/welcomeFragment">
+
+    <activity
+        android:id="@+id/loginRecruiterActivity"
+        android:name="com.pmsi.lamaruin.login.asrecruiter.LoginRecruiterActivity"
+        android:label="activity_login_student"
+        tools:layout="@layout/activity_login_student" />
+    <activity
+        android:id="@+id/loginStudentActivity"
+        android:name="com.pmsi.lamaruin.login.asstudent.LoginStudentActivity"
+        android:label="LoginStudentActivity" />
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.pmsi.lamaruin.WelcomeFragment"
+        android:label="WelcomeFragment" >
+        <action
+            android:id="@+id/action_welcomeFragment_to_loginStudentActivity"
+            app:destination="@id/loginStudentActivity" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_loginRecruiterActivity"
+            app:destination="@id/loginRecruiterActivity" />
+    </fragment>
+</navigation>
