@@ -3,10 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.pmsi.lamaruin">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
-        android:name=".App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -17,31 +14,53 @@
         android:theme="@style/Theme.LamarUIN"
         tools:targetApi="31">
         <activity
-            android:name=".ui.mahasiswa.profil.AddExperienceActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.mahasiswa.profil.AddEducationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.mahasiswa.profil.EditProfileActivity"
-            android:exported="false" />
-        <activity
-            android:name=".register.RegisterRecruiterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainMahasiswaActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.mahasiswa.listJob.detail.DetailJobActivity"
-            android:exported="false" />
-        <activity
-            android:name=".register.RegisterMahasiswaActivity"
-            android:exported="true">
+            android:name=".WelcomeActivity"
+            android:exported="true"
+            android:label="@string/title_activity_welcome"
+            android:theme="@style/Theme.LamarUIN.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.recruiter.profile.InputJobActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".MainRecuiterActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".login.asstudent.LoginStudentActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".login.asrecruiter.LoginRecruiterActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.mahasiswa.listJob.detail.DetailJobActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainMahasiswaActivity"
+            android:exported="false">
         </activity>
     </application>
 
