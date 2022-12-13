@@ -8,7 +8,7 @@
     <string name="login">Login</string>
     <string name="login_student">Login as Student</string>
     <string name="input_job">Input Job</string>
-    <string-array name="Languages">
+    <string-array name="posisi_list">
         <item>Java</item>
         <item>Kotlin</item>
         <item>Swift</item>

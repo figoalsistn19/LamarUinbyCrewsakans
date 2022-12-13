@@ -12,33 +12,31 @@ import com.pmsi.lamaruin.databinding.ActivityInputJobBinding
 
 class InputJobActivity : AppCompatActivity() {
 
+    private var posisi_user: String? = "Agent"
+
     private lateinit var binding: ActivityInputJobBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityInputJobBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        // access the items of the list
-        val languages = resources.getStringArray(R.array.Languages)
 
-        // access the spinner
-        val spinner = binding.spinner
-        if (spinner != null) {
-            val adapter = ArrayAdapter(this,
-                android.R.layout.simple_spinner_item, languages)
-            spinner.adapter = adapter
+        supportActionBar?.hide()
 
-            spinner.onItemSelectedListener = object :
-                AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>,
-                                            view: View, position: Int, id: Long) {
-                    Toast.makeText(this@InputJobActivity,
-                        getString(R.string.selected_item) + " " +
-                                "" + languages[position], Toast.LENGTH_SHORT).show()
-                }
+        val listPosisi = resources.getStringArray(R.array.posisi_list)
+        val adapter = ArrayAdapter(this, R.layout.spinner_item, listPosisi)
+        binding.spinner.adapter = adapter
 
-                override fun onNothingSelected(parent: AdapterView<*>) {
-                    // write code to perform some action
-                }
+        binding.spinner.onItemSelectedListener = object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View, position: Int, id: Long
+            ) {
+                posisi_user = listPosisi[position]
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // write code to perform some action
             }
         }
     }
