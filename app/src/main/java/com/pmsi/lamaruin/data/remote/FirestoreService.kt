@@ -6,6 +6,7 @@ import com.pmsi.lamaruin.data.model.CreateRecruiter
 import com.pmsi.lamaruin.data.model.CreateStudent
 import com.google.firebase.firestore.*
 import com.pmsi.lamaruin.data.model.Education
+import com.pmsi.lamaruin.data.model.Experience
 
 class FirestoreService {
     private val db = Firebase.firestore
@@ -62,11 +63,26 @@ class FirestoreService {
             .document(id_user)
             .collection("education")
 
+    fun getExp(id_user: String) : Query =
+        db.collection("student")
+            .document(id_user)
+            .collection("experience")
+
     fun addEducation(id_user: String, education: Education, listen: (String) -> Unit) =
         db.collection("student").document(id_user).collection("education")
             .add(education)
             .onSuccessTask { doc ->
                 doc.update("id_edu", doc.id)
+                    .addOnSuccessListener {
+                        listen(doc.id)
+                    }
+            }
+
+    fun addExperience(id_user: String, experience: Experience, listen: (String) -> Unit) =
+        db.collection("student").document(id_user).collection("experience")
+            .add(experience)
+            .onSuccessTask { doc ->
+                doc.update("id_experience", doc.id)
                     .addOnSuccessListener {
                         listen(doc.id)
                     }
