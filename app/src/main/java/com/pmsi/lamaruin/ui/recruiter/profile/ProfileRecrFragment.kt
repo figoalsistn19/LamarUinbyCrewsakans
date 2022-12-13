@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import com.pmsi.lamaruin.R
 import com.pmsi.lamaruin.databinding.FragmentProfilBinding
 import com.pmsi.lamaruin.databinding.FragmentProfileRecrBinding
@@ -25,8 +26,8 @@ class ProfileRecrFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btnInputJob.setOnClickListener {
-            Navigation
-        }
+        binding.btnInputJob.setOnClickListener (
+            Navigation.createNavigateOnClickListener(R.id.action_profileRecFragment_to_inputJobActivity)
+        )
     }
 }

@@ -19,5 +19,15 @@
         android:id="@+id/profileRecFragment"
         android:name="com.pmsi.lamaruin.ui.recruiter.profile.ProfileRecrFragment"
         android:label="@string/profile"
-        tools:layout="@layout/fragment_profile_recr" />
+        tools:layout="@layout/fragment_profile_recr" >
+
+        <action
+            android:id="@+id/action_profileRecFragment_to_inputJobActivity"
+            app:destination="@id/inputJobActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/inputJobActivity"
+        android:name="com.pmsi.lamaruin.ui.recruiter.profile.InputJobActivity"
+        android:label="InputJobActivity"
+        tools:layout="@layout/activity_input_job"/>
 </navigation>

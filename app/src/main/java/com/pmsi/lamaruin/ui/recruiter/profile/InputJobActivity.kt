@@ -8,16 +8,20 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import com.pmsi.lamaruin.R
+import com.pmsi.lamaruin.databinding.ActivityInputJobBinding
 
 class InputJobActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityInputJobBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_input_job)
+        binding = ActivityInputJobBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         // access the items of the list
         val languages = resources.getStringArray(R.array.Languages)
 
         // access the spinner
-        val spinner = findViewById<Spinner>(R.id.spinner)
+        val spinner = binding.spinner
         if (spinner != null) {
             val adapter = ArrayAdapter(this,
                 android.R.layout.simple_spinner_item, languages)

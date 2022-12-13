@@ -4,6 +4,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.pmsi.lamaruin.data.model.CreateRecruiter
 import com.pmsi.lamaruin.data.model.CreateStudent
+import com.pmsi.lamaruin.data.model.JobVacancy
 
 class FirestoreService {
     private val db = Firebase.firestore
@@ -13,6 +14,16 @@ class FirestoreService {
             .add(student)
             .onSuccessTask { doc ->
                 doc.update("id_student", doc.id)
+                    .addOnSuccessListener {
+                        listen(doc.id)
+                    }
+            }
+
+    fun addJob(jobVacancy: JobVacancy, listen: (String) -> Unit) =
+        db.collection("JobVacancy")
+            .add(jobVacancy)
+            .onSuccessTask { doc ->
+                doc.update("id_job", doc.id)
                     .addOnSuccessListener {
                         listen(doc.id)
                     }
