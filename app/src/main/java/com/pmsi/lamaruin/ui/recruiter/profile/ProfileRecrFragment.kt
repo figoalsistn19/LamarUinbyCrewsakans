@@ -6,15 +6,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.pmsi.lamaruin.R
+import com.pmsi.lamaruin.databinding.FragmentProfilBinding
+import com.pmsi.lamaruin.databinding.FragmentProfileRecrBinding
 
 
 class ProfileRecrFragment : Fragment() {
+
+    private lateinit var binding: FragmentProfileRecrBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile_recr, container, false)
+        binding = FragmentProfileRecrBinding.inflate(layoutInflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.btnInputJob.setOnClickListener {
+            Navigation
+        }
     }
 }
