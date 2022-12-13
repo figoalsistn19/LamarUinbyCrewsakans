@@ -44,6 +44,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <TextView
+                android:id="@+id/changeAvatar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/change"
@@ -242,18 +243,21 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginHorizontal="20dp">
                 <TextView
+                    android:id="@+id/tvNamaCV"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="5dp"
+                    android:singleLine="true"
                     tools:text="namafile.pdf"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/custom_rounded_stroke_grey"/>
                 <ImageView
+                    android:id="@+id/btnAddCV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:src="@drawable/ic_baseline_file_open_24"
+                    android:src="@drawable/ic_baseline_upload_file_24"
                     android:background="@color/purple_500"
                     android:padding="5dp"/>
             </LinearLayout>
@@ -285,7 +289,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Experience Not Yet Added"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="20dp"
                 android:textStyle="italic"
                 android:layout_marginTop="5dp"
                 android:visibility="gone"/>
@@ -304,7 +308,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="20dp">
                 <TextView
                     android:id="@+id/tvExperience"
@@ -327,7 +331,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Experience Not Yet Added"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="30dp"
                 android:textStyle="italic"
                 android:layout_marginTop="5dp"
                 android:visibility="gone"/>

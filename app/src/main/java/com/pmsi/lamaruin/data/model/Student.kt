@@ -12,7 +12,6 @@ data class CreateStudent constructor(
     var skill : String = "",
     var nama_cv : String = "",
     var url_cv : String = "",
-    var id_cv : String = "",
     var id_student: String = "",
     var password_student: String = "",
     var add_profile: Boolean = false

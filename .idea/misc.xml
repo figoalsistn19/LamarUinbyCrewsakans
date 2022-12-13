@@ -16,6 +16,7 @@
         <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/drawable/ic_choose_file.xml" value="0.118" />
         <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/activity_add_education.xml" value="0.22" />
         <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/activity_add_experience.xml" value="0.14666666666666667" />
+        <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/activity_detail_cv.xml" value="0.1" />
         <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/activity_detail_job.xml" value="0.1796875" />
         <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/activity_edit_profile.xml" value="0.22" />
         <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/activity_input_job.xml" value="0.1796875" />
@@ -28,7 +29,7 @@
         <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/fragment_company_profile.xml" value="0.22" />
         <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/fragment_job_description.xml" value="0.1796875" />
         <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/fragment_list_job.xml" value="0.22" />
-        <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/fragment_profil.xml" value="0.22" />
+        <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/fragment_profil.xml" value="0.20234113712374582" />
         <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/item_list_applied.xml" value="0.2131782945736434" />
         <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/item_list_edit_education.xml" value="0.3333333333333333" />
         <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/item_list_edit_experience.xml" value="0.4466666666666667" />

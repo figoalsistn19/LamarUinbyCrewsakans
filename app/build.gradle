@@ -42,6 +42,7 @@ android {
 dependencies {
 
     implementation 'com.google.firebase:firebase-firestore:24.4.1'
+    implementation 'com.google.firebase:firebase-storage:20.1.0'
     def paging_version = "3.1.1",
         idleResourceVersion = '3.2.0',
         fragmentKtx = "1.2.5",
@@ -66,6 +67,8 @@ dependencies {
         lottieVersion = "3.6.1",
         room_version = "2.4.2",
         jupiterEngineVersion = "5.5.0"
+
+    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
