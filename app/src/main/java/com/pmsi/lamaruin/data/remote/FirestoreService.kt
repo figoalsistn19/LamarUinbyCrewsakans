@@ -4,6 +4,8 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.pmsi.lamaruin.data.model.CreateRecruiter
 import com.pmsi.lamaruin.data.model.CreateStudent
+import com.google.firebase.firestore.*
+import com.pmsi.lamaruin.data.model.Education
 
 class FirestoreService {
     private val db = Firebase.firestore
@@ -54,4 +56,19 @@ class FirestoreService {
     fun updateStatusKode(id_kode: String) =
         db.collection("kode").document(id_kode)
             .update("used", true)
+
+    fun getEdu(id_user: String) : Query =
+        db.collection("student")
+            .document(id_user)
+            .collection("education")
+
+    fun addEducation(id_user: String, education: Education, listen: (String) -> Unit) =
+        db.collection("student").document(id_user).collection("education")
+            .add(education)
+            .onSuccessTask { doc ->
+                doc.update("id_edu", doc.id)
+                    .addOnSuccessListener {
+                        listen(doc.id)
+                    }
+            }
 }

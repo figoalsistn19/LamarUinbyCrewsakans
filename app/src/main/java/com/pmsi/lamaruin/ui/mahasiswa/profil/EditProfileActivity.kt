@@ -1,15 +1,21 @@
 package com.pmsi.lamaruin.ui.mahasiswa.profil
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
+import androidx.core.view.isVisible
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.pmsi.lamaruin.R
 import com.pmsi.lamaruin.data.LoginPref
+import com.pmsi.lamaruin.data.model.Education
 import com.pmsi.lamaruin.data.remote.FirestoreService
+import com.pmsi.lamaruin.databinding.ActivityAddEducationBinding
 import com.pmsi.lamaruin.databinding.ActivityEditProfileBinding
 import com.pmsi.lamaruin.databinding.ActivityRegisterMahasiswaBinding
 import com.pmsi.lamaruin.databinding.FragmentProfilBinding
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -20,6 +26,10 @@ class EditProfileActivity : AppCompatActivity() {
     @Inject
     lateinit var service: FirestoreService
 
+    private val listEditEduAdapter : ListEditEduAdapter by lazy {
+        ListEditEduAdapter()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
@@ -29,9 +39,25 @@ class EditProfileActivity : AppCompatActivity() {
 
         val id = LoginPref(this).getIdMhs().toString()
         setProfile(id)
+
+        binding.apply {
+            addEducation.setOnClickListener {
+                Intent(this@EditProfileActivity,AddEducationActivity::class.java ).apply {
+                    startActivity(this)
+                }
+            }
+        }
     }
 
     private fun setProfile(id : String){
+        binding.apply {
+            rvListEditEducation.apply {
+                layoutManager = LinearLayoutManager(this@EditProfileActivity)
+                adapter = listEditEduAdapter
+                setHasFixedSize(true)
+            }
+        }
+
         service.searchUsersById(id)
             .get()
             .addOnSuccessListener {
@@ -57,6 +83,34 @@ class EditProfileActivity : AppCompatActivity() {
                     editSkill.text = skill.toString().toEditable()
                     fileName.text = nama_cv.toString().toEditable()
                 }
+
+                service.getEdu(id)
+                    .addSnapshotListener { value, e ->
+                        if (e != null) {
+                            Timber.d("Listen failed.")
+//                    binding.progressBar.isVisible = false
+                            return@addSnapshotListener
+                        }
+                        var listEdu = ArrayList<Education>()
+                        for (doc in value!!) {
+                            var jurusan = doc.getString("field_of_study")
+                            var degree = doc.getString("degree")
+                            var univ = doc.getString("school")
+                            var id_edu = doc.getString("edu")
+                            var start_year = doc.getString("education_start_date")
+                            var end_year = doc.getString("education_end_date")
+                            var edu = Education(jurusan, degree, univ,start_year, end_year, id_edu)
+                            listEdu.add(edu)
+                        }
+                        if (listEdu.isEmpty()) {
+                            binding.tvNothingEdu.isVisible = true
+                            binding.rvListEditEducation.isVisible = false
+                        } else {
+                            binding.tvNothingEdu.isVisible = false
+                            binding.rvListEditEducation.isVisible = true
+                            listEditEduAdapter.setData(listEdu)
+                        }
+                    }
             }
     }
 

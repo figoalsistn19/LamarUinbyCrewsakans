@@ -52,6 +52,8 @@ class ProfilFragment : Fragment() {
 
 
     private fun setProfil(id : String){
+        binding.progressBar.isVisible = true
+
         service.searchUsersById(id)
             .get()
             .addOnSuccessListener {
@@ -72,6 +74,8 @@ class ProfilFragment : Fragment() {
                             }
                             binding.tvSilakanLengkapi.isVisible = true
                             binding.linearDetailProfile.isVisible = false
+
+                            binding.progressBar.isVisible = false
                         }
                 }
                 else if(statAddProfile != null && statAddProfile == true){
@@ -99,6 +103,8 @@ class ProfilFragment : Fragment() {
                                 tvInterestUser.text = interest
                                 tvSkillUser.text = skill
                                 tvSilakanLengkapi.isVisible = false
+
+                                binding.progressBar.isVisible = false
                             }
                         }
                 }

@@ -17,7 +17,7 @@
         <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/activity_add_education.xml" value="0.22" />
         <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/activity_add_experience.xml" value="0.14666666666666667" />
         <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/activity_detail_job.xml" value="0.1796875" />
-        <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/activity_edit_profile.xml" value="0.1875968992248062" />
+        <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/activity_edit_profile.xml" value="0.1" />
         <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/activity_input_job.xml" value="0.1796875" />
         <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
         <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/activity_main_mahasiswa.xml" value="0.22" />
@@ -28,9 +28,9 @@
         <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/fragment_company_profile.xml" value="0.22" />
         <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/fragment_job_description.xml" value="0.1796875" />
         <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/fragment_list_job.xml" value="0.22" />
-        <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/fragment_profil.xml" value="0.22" />
+        <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/fragment_profil.xml" value="0.16666666666666666" />
         <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/item_list_applied.xml" value="0.2131782945736434" />
-        <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/item_list_edit_education.xml" value="0.14666666666666667" />
+        <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/item_list_edit_education.xml" value="0.3333333333333333" />
         <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/item_list_edit_experience.xml" value="0.16666666666666666" />
         <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/item_list_education.xml" value="0.3333333333333333" />
         <entry key="..\:/Bangkit/android expert/LamarUinbyCrewsakans/app/src/main/res/layout/item_list_experience.xml" value="0.22" />
@@ -45,5 +45,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
   </component>
 </project>

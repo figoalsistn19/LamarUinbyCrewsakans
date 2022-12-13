@@ -60,15 +60,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/grey" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/change"
-                android:textColor="@color/purple_500"
-                android:textSize="12dp"
-                app:layout_constraintEnd_toEndOf="@+id/imageView6"
-                app:layout_constraintStart_toStartOf="@+id/imageView6"
-                app:layout_constraintTop_toBottomOf="@+id/imageView6" />
 
             <TextView
                 android:id="@+id/tvNama"
@@ -251,6 +242,7 @@
                 android:textSize="14sp"
                 android:textStyle="bold" />
             <ImageButton
+                android:id="@+id/addEducation"
                 android:background="@null"
                 android:layout_marginStart="10dp"
                 android:layout_width="20dp"
@@ -258,12 +250,21 @@
                 android:src="@drawable/ic_baseline_add_24"/>
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tvNothingEdu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Education Not Yet Added"
+            android:layout_marginStart="15dp"
+            android:textStyle="italic"
+            android:layout_marginTop="5dp"
+            android:visibility="gone"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvListEditEducation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="10dp"
-            android:background="@drawable/custom_rounded_stroke_grey"
             android:paddingVertical="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginHorizontal="15dp"/>
@@ -288,6 +289,16 @@
                 android:layout_height="20dp"
                 android:src="@drawable/ic_baseline_add_24"/>
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvNothingExp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Experience Not Yet Added"
+            android:layout_marginStart="15dp"
+            android:textStyle="italic"
+            android:layout_marginTop="5dp"
+            android:visibility="gone"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvListEditExperience"
@@ -336,6 +347,7 @@
             android:layout_marginTop="10dp"
             android:textAllCaps="false"
             android:textSize="16sp"
+            android:layout_marginBottom="15dp"
             android:background="@drawable/custom_btn_rounded"
             android:layout_gravity="center_horizontal"/>
     </LinearLayout>

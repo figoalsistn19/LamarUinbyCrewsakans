@@ -32,7 +32,8 @@ class RegisterMahasiswaActivity : AppCompatActivity() {
 
         val loginPref = LoginPref(this)
         val isLogin = loginPref.getSession()
-        if (!isLogin) {
+        val role = loginPref.getRole()
+        if (isLogin && role=="student") {
             startActivity(Intent(this, MainMahasiswaActivity::class.java))
             finish()
         }
@@ -93,6 +94,7 @@ class RegisterMahasiswaActivity : AppCompatActivity() {
                                     setSession(true)
                                     setIdMhs(id)
                                     setNamaMhs(name)
+                                    setRole("student")
                                 }
                                 LoginPref(this@RegisterMahasiswaActivity)
                                 binding.progressBar.isVisible = false

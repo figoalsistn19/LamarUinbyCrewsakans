@@ -6,6 +6,7 @@ class LoginPref(context : Context) {
     private val prefIsLogin = context.getSharedPreferences(PREFS_ISLOGIN, Context.MODE_PRIVATE)
     private val prefIdMahasiswa = context.getSharedPreferences(PREFS_ID_MHS, Context.MODE_PRIVATE)
     private val prefNamaMahasiswa = context.getSharedPreferences(PREFS_NAMA_MHS, Context.MODE_PRIVATE)
+    private val prefRole = context.getSharedPreferences(PREFS_ROLE, Context.MODE_PRIVATE)
 
     fun setSession(isLogin: Boolean){
         val editor = prefIsLogin.edit()
@@ -25,12 +26,22 @@ class LoginPref(context : Context) {
         editor.apply()
     }
 
+    fun setRole(role: String){
+        val editor = prefRole.edit()
+        editor.putString(ROLE, role)
+        editor.apply()
+    }
+
     fun getSession() : Boolean{
         return prefIsLogin.getBoolean(SESSION, false)
     }
 
     fun getIdMhs() : String? {
         return prefIdMahasiswa.getString(ID_MHS, null)
+    }
+
+    fun getRole() : String? {
+        return prefRole.getString(ROLE, null)
     }
 
     fun getNamaMhs() : String? {
@@ -41,6 +52,7 @@ class LoginPref(context : Context) {
         prefIsLogin.edit().clear().apply()
         prefIdMahasiswa.edit().clear().apply()
         prefNamaMahasiswa.edit().clear().apply()
+        prefRole.edit().clear().apply()
     }
 
     companion object {
@@ -50,6 +62,8 @@ class LoginPref(context : Context) {
         private const val ID_MHS = "id_mhs"
         private const val PREFS_NAMA_MHS = "namaMhs_pref"
         private const val NAMA_MHS = "nama_mhs"
+        private const val PREFS_ROLE = "role_prefs"
+        private const val ROLE = "role"
     }
 
 }

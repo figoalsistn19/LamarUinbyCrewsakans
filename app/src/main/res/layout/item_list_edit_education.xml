@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:src="@drawable/ic_baseline_brightness_1_24"
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:maxWidth="240dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="5dp"
         android:text="Sistem Informasi"
         android:textColor="@color/black"
         android:textSize="13sp"
@@ -50,7 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/degree" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/year"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="15dp"
@@ -60,7 +60,7 @@
         app:layout_constraintTop_toTopOf="@+id/jurusan" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/btnHapus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
@@ -70,12 +70,13 @@
         app:layout_constraintTop_toTopOf="@+id/universitas" />
 
     <ImageButton
+        android:id="@+id/btnEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
         android:layout_marginEnd="10dp"
         android:src="@drawable/ic_baseline_edit_grey"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton"
-        app:layout_constraintTop_toTopOf="@+id/imageButton" />
+        app:layout_constraintEnd_toStartOf="@+id/btnHapus"
+        app:layout_constraintTop_toTopOf="@+id/btnHapus" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -45,6 +45,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
+            android:id="@+id/btnSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -66,7 +67,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/edit_address"
+        android:id="@+id/addField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLines="1"
@@ -89,7 +90,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/edit_degree"
+        android:id="@+id/addDegree"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLines="1"
@@ -112,7 +113,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/edit_university"
+        android:id="@+id/addSchool"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLines="1"
@@ -146,6 +147,7 @@
             style="@style/Base.Widget.AppCompat.ImageButton"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
+            android:onClick="showDateStartPicker"
             android:contentDescription="Start Date"
             android:src="@drawable/ic_date" />
 
@@ -168,7 +170,8 @@
             style="@style/Base.Widget.AppCompat.ImageButton"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:contentDescription="Start Date"
+            android:onClick="showDateEndPicker"
+            android:contentDescription="End Date"
             android:src="@drawable/ic_date" />
 
         <TextView

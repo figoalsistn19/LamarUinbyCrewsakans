@@ -44,13 +44,23 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/change"
+                android:textColor="@color/white"
+                android:textSize="12dp"
+                app:layout_constraintEnd_toEndOf="@+id/ivProfile"
+                app:layout_constraintStart_toStartOf="@+id/ivProfile"
+                app:layout_constraintTop_toBottomOf="@+id/ivProfile" />
+
+            <TextView
                 android:id="@+id/tvNamaMahasiswa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxWidth="300dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="8dp"
-                android:text="Annisa Rosdiyana"
+                tools:text="Annisa Rosdiyana"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:singleLine="true"
@@ -64,7 +74,7 @@
                 android:maxWidth="300dp"
                 android:singleLine="true"
                 android:layout_marginTop="10dp"
-                android:text="annisarosdiyana17@gmail.com"
+                tools:text="annisarosdiyana17@gmail.com"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/tvNamaMahasiswa"
@@ -105,6 +115,18 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="20dp">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -121,7 +143,7 @@
                 android:layout_marginTop="10dp"
                 android:paddingHorizontal="10dp"
                 android:background="@drawable/custom_rounded_stroke_grey"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ligula enim, varius et tortor finibus, vehicula viverra sem."
+                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ligula enim, varius et tortor finibus, vehicula viverra sem."
                 android:paddingVertical="5dp"/>
 
             <TextView
@@ -141,7 +163,7 @@
                 android:layout_marginTop="10dp"
                 android:paddingHorizontal="10dp"
                 android:background="@drawable/custom_rounded_stroke_grey"
-                android:text="21 13th Street SE, Harwood,nd, 58042  United States"
+                tools:text="21 13th Street SE, Harwood,nd, 58042  United States"
                 android:paddingVertical="5dp"/>
 
             <TextView
@@ -161,7 +183,7 @@
                 android:layout_marginTop="10dp"
                 android:paddingHorizontal="10dp"
                 android:background="@drawable/custom_rounded_stroke_grey"
-                android:text="089829182839"
+                tools:text="089829182839"
                 android:paddingVertical="5dp"/>
 
             <TextView
@@ -181,7 +203,7 @@
                 android:layout_marginTop="10dp"
                 android:paddingHorizontal="10dp"
                 android:background="@drawable/custom_rounded_stroke_grey"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                 android:paddingVertical="5dp"/>
 
             <TextView
@@ -201,7 +223,7 @@
                 android:layout_marginTop="10dp"
                 android:paddingHorizontal="10dp"
                 android:background="@drawable/custom_rounded_stroke_grey"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                 android:paddingVertical="5dp"/>
 
             <TextView
@@ -224,7 +246,7 @@
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="5dp"
-                    android:text="namafile.pdf"
+                    tools:text="namafile.pdf"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/custom_rounded_stroke_grey"/>
                 <ImageView
@@ -274,5 +296,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginHorizontal="20dp"/>
         </LinearLayout>
+
     </LinearLayout>
 </ScrollView>
