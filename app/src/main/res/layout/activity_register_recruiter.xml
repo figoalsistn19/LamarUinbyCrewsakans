@@ -18,6 +18,7 @@
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp"
             android:src="@drawable/logo_puskar"
             app:layout_constraintEnd_toEndOf="parent"
@@ -45,17 +46,6 @@
                 android:text="Recruiter Registration"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/input_username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/custom_rounded_stroke"
-                android:hint="Username"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="10dp"
-                android:singleLine="true" />
 
             <EditText
                 android:id="@+id/input_rec_name"
@@ -159,6 +149,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/btnLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"

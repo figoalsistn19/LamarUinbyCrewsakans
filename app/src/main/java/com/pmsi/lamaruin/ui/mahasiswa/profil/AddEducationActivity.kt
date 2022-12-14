@@ -43,6 +43,8 @@ class AddEducationActivity : AppCompatActivity(), DatePickerFragment.DialogDateL
             saveData()
         }
 
+        binding.btnBack.setOnClickListener { finish() }
+
     }
 
     private fun saveData(){
@@ -74,9 +76,7 @@ class AddEducationActivity : AppCompatActivity(), DatePickerFragment.DialogDateL
                 val education = Education(field, degree, school, startDate, endDate)
                 if(id_user != null){
                     service.addEducation(id_user,education){
-                        Intent(this, EditProfileActivity::class.java).apply {
-                            startActivity(this)
-                        }
+                        finish()
                     }
                 }
             }

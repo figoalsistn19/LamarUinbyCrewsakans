@@ -16,7 +16,8 @@
         android:src="@drawable/logo_puskar"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -39,17 +40,6 @@
             android:text="Student Registration"
             android:textSize="18sp"
             android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/input_username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:singleLine="true"
-            android:background="@drawable/custom_rounded_stroke"
-            android:hint="Username"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="10dp" />
 
         <EditText
             android:id="@+id/input_name"
@@ -127,6 +117,7 @@
             android:textColor="@color/white"
             android:textStyle="bold" />
         <TextView
+            android:id="@+id/btnLogin"
             android:layout_marginStart="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

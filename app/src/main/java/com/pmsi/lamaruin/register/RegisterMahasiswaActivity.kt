@@ -10,6 +10,7 @@ import com.pmsi.lamaruin.data.LoginPref
 import com.pmsi.lamaruin.data.model.CreateStudent
 import com.pmsi.lamaruin.data.remote.FirestoreService
 import com.pmsi.lamaruin.databinding.ActivityRegisterMahasiswaBinding
+import com.pmsi.lamaruin.login.asstudent.LoginStudentActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -29,29 +30,23 @@ class RegisterMahasiswaActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         binding.btnRegister.setOnClickListener{ register() }
-
-        val loginPref = LoginPref(this)
-        val isLogin = loginPref.getSession()
-        val role = loginPref.getRole()
-        if (isLogin && role=="student") {
-            startActivity(Intent(this, MainMahasiswaActivity::class.java))
-            finish()
+        binding.btnLogin.setOnClickListener {
+            Intent(this, LoginStudentActivity::class.java).apply {
+                startActivity(this)
+            }
         }
+
     }
 
     private fun register() {
         binding.progressBar.isVisible = true
 
-        val username = binding.inputUsername.text.toString()
         val name = binding.inputName.text.toString()
         val email = binding.inputEmail.text.toString()
         val password = binding.inputPass.text.toString()
         val confirmPass = binding.confirmPass.text.toString()
 
         when {
-            username.isEmpty() -> {
-                binding.inputUsername.error = "Masukkan username"
-            }
             name.isEmpty() -> {
                 binding.inputName.error = "Masukkan nama"
             }
@@ -81,7 +76,6 @@ class RegisterMahasiswaActivity : AppCompatActivity() {
                         }
                         else {
                             val users = CreateStudent(
-                                username,
                                 name,
                                 email,
                                 foto = "https://i.pinimg.com/474x/86/ea/e3/86eae3d8abc2362ad6262916cb950640.jpg",
@@ -98,9 +92,11 @@ class RegisterMahasiswaActivity : AppCompatActivity() {
                                 }
                                 LoginPref(this@RegisterMahasiswaActivity)
                                 binding.progressBar.isVisible = false
-                                Intent(this, MainMahasiswaActivity::class.java).apply {
-                                    startActivity(this)
-                                }
+
+                                val i = Intent(this, MainMahasiswaActivity::class.java)
+                                i.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                                startActivity(i)
+
                                 Toast.makeText(
                                     this@RegisterMahasiswaActivity,
                                     "Berhasil Register",

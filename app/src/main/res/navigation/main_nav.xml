@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/welcomeFragment">
+
+    <activity
+        android:id="@+id/loginRecruiterActivity"
+        android:name="com.pmsi.lamaruin.login.asrecruiter.LoginRecruiterActivity"
+        android:label="activity_login_student"
+        tools:layout="@layout/activity_login_student" />
+    <activity
+        android:id="@+id/loginStudentActivity"
+        android:name="com.pmsi.lamaruin.login.asstudent.LoginStudentActivity"
+        android:label="LoginStudentActivity" />
+    <activity
+        android:id="@+id/registStudentActivity"
+        android:name="com.pmsi.lamaruin.register.RegisterMahasiswaActivity"
+        android:label="RegistStudentActivity" />
+    <activity
+        android:id="@+id/registRecruiterActivity"
+        android:name="com.pmsi.lamaruin.register.RegisterRecruiterActivity"
+        android:label="RegistRecruiterActivity" />
+    <activity
+        android:id="@+id/mainStudentActivity"
+        android:name="com.pmsi.lamaruin.MainMahasiswaActivity"
+        android:label="MainStudentActivity" />
+    <activity
+        android:id="@+id/mainRecruiterActivity"
+        android:name="com.pmsi.lamaruin.MainRecuiterActivity"
+        android:label="MainRecruiterActivity" />
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.pmsi.lamaruin.WelcomeFragment"
+        android:label="WelcomeFragment" >
+        <action
+            android:id="@+id/action_welcomeFragment_to_loginStudentActivity"
+            app:destination="@id/loginStudentActivity" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_loginRecruiterActivity"
+            app:destination="@id/loginRecruiterActivity" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_RegistStudentActivity"
+            app:destination="@id/registStudentActivity" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_RegistRecruiterActivity"
+            app:destination="@id/registRecruiterActivity" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_MainStudentActivity"
+            app:destination="@id/mainStudentActivity" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_MainRecruiterActivity"
+            app:destination="@id/mainRecruiterActivity" />
+    </fragment>
+</navigation>

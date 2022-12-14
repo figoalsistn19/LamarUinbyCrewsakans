@@ -7,6 +7,7 @@ import com.pmsi.lamaruin.data.model.CreateStudent
 import com.google.firebase.firestore.*
 import com.pmsi.lamaruin.data.model.Education
 import com.pmsi.lamaruin.data.model.Experience
+import com.pmsi.lamaruin.data.model.JobVacancy
 
 class FirestoreService {
     private val db = Firebase.firestore
@@ -20,6 +21,26 @@ class FirestoreService {
                         listen(doc.id)
                     }
             }
+
+    fun addJob(jobVacancy: JobVacancy, listen: (String) -> Unit) =
+        db.collection("JobVacancy")
+            .add(jobVacancy)
+            .onSuccessTask { doc ->
+                doc.update("id_job", doc.id)
+                    .addOnSuccessListener {
+                        listen(doc.id)
+                    }
+            }
+
+    fun loginStudent(email: String, password : String) =
+        db.collection("student")
+            .whereEqualTo("email", email)
+            .whereEqualTo("password_student", password)
+
+    fun loginRecruiter(email: String, password : String) =
+        db.collection("recruiter")
+            .whereEqualTo("email", email)
+            .whereEqualTo("password_recruiter", password)
 
     fun addStudents(student: CreateStudent) =
         db.collection("student")
@@ -44,9 +65,8 @@ class FirestoreService {
                     }
             }
 
-    fun searchRecruiter(username: String, email: String) =
+    fun searchRecruiter(email: String) =
         db.collection("recruiter")
-            .whereEqualTo("username", username)
             .whereEqualTo("email", email)
 
     fun searchKodeAkses(kode: String) =
@@ -62,6 +82,25 @@ class FirestoreService {
         db.collection("student")
             .document(id_user)
             .collection("education")
+
+    fun getJob() : Query =
+        db.collection("JobVacancy")
+
+    fun getJobById(id: String) =
+        db.collection("JobVacancy")
+            .document(id)
+
+    fun getJobWithInterest(interest: String) : Query =
+        db.collection("JobVacancy")
+            .whereNotEqualTo("job_category", interest)
+
+    fun getRecommendJob(interest: String) : Query =
+        db.collection("JobVacancy")
+            .whereEqualTo("job_category", interest)
+
+    fun getRecruiterById(id_user: String) =
+        db.collection("recruiter")
+            .document(id_user)
 
     fun getExp(id_user: String) : Query =
         db.collection("student")

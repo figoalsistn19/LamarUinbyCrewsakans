@@ -39,6 +39,8 @@ class AddExperienceActivity : AppCompatActivity(), DatePickerFragment.DialogDate
         binding.btnSave.setOnClickListener {
             saveData()
         }
+
+        binding.btnBack.setOnClickListener { finish() }
     }
 
     private fun saveData(){
@@ -68,9 +70,9 @@ class AddExperienceActivity : AppCompatActivity(), DatePickerFragment.DialogDate
                     this, "Input End Date", Toast.LENGTH_LONG).show()
             }
             else -> {
-                val education = Experience(company, posisi, desc, startDate, endDate)
+                val experience = Experience(company, posisi, desc, startDate, endDate)
                 if(id_user != null){
-                    service.addExperience(id_user,education){
+                    service.addExperience(id_user,experience){
                         finish()
                     }
                 }

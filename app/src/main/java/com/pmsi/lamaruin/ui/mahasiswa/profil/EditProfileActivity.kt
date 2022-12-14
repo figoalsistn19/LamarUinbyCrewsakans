@@ -5,6 +5,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
@@ -26,6 +29,8 @@ import javax.inject.Inject
 class EditProfileActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityEditProfileBinding
+
+    private var posisi_user: String? = "Marketing"
 
     @Inject
     lateinit var service: FirestoreService
@@ -54,7 +59,7 @@ class EditProfileActivity : AppCompatActivity() {
         var address = binding.editAddress.text.toString()
         var phone = binding.editPhone.text.toString()
         var desc = binding.editDesc.text.toString()
-        var interest = binding.editInterest.text.toString()
+        val interest = posisi_user.toString()
         var skill = binding.editSkill.text.toString()
 
         when {
@@ -72,9 +77,6 @@ class EditProfileActivity : AppCompatActivity() {
             }
             desc.isEmpty() -> {
                 binding.editDesc.error = "Field tidak boleh kosong"
-            }
-            interest.isEmpty() -> {
-                binding.editInterest.error = "Field tidak boleh kosong"
             }
             skill.isEmpty() -> {
                 binding.editSkill.error = "Field tidak boleh kosong"
@@ -180,8 +182,27 @@ class EditProfileActivity : AppCompatActivity() {
                     editDesc.text = description.toString().toEditable()
                     editAddress.text = address.toString().toEditable()
                     editPhone.text = phone.toString().toEditable()
-                    editInterest.text = interest.toString().toEditable()
                     editSkill.text = skill.toString().toEditable()
+                }
+
+                posisi_user = interest.toString()
+
+                val listPosisi = resources.getStringArray(R.array.posisi_list)
+                val adapter = ArrayAdapter(this, R.layout.spinner_item, listPosisi)
+                binding.spinner.adapter = adapter
+
+                binding.spinner.onItemSelectedListener = object :
+                    AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(
+                        parent: AdapterView<*>,
+                        view: View, position: Int, id: Long
+                    ) {
+                        posisi_user = listPosisi[position]
+                    }
+
+                    override fun onNothingSelected(parent: AdapterView<*>) {
+                        // write code to perform some action
+                    }
                 }
 
                 binding.ivProfileEdit.load(foto){

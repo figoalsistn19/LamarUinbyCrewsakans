@@ -10,26 +10,29 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.OpenableColumns
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import coil.transform.CircleCropTransformation
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FileDownloadTask
+import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
-import com.pmsi.lamaruin.R
+import com.pmsi.lamaruin.WelcomeActivity
 import com.pmsi.lamaruin.data.LoginPref
 import com.pmsi.lamaruin.data.model.Education
 import com.pmsi.lamaruin.data.model.Experience
 import com.pmsi.lamaruin.data.remote.FirestoreService
 import com.pmsi.lamaruin.databinding.FragmentProfilBinding
-import com.pmsi.lamaruin.register.RegisterMahasiswaActivity
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.io.File
@@ -39,7 +42,7 @@ import java.io.OutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
-import kotlin.collections.ArrayList
+
 
 @AndroidEntryPoint
 class ProfilFragment : Fragment() {
@@ -75,20 +78,17 @@ class ProfilFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val id = LoginPref(requireActivity()).getIdMhs().toString()
-        setProfil(id)
+        var id_user = LoginPref(requireActivity()).getIdMhs().toString()
+        setProfil(id_user)
 
         binding.apply {
             logout.setOnClickListener { logout() }
             btnAddCV.setOnClickListener{ addCV() }
             changeAvatar.setOnClickListener { startGallery() }
+
             tvNamaCV.setOnClickListener{
                 if (tvNamaCV.text != ""){
-                    Intent(requireActivity(), DetailCvActivity::class.java).apply {
-                        putExtra("data", nameCv)
-                        startActivity(this)
-                    }
+                    downloadFile()
                 }
             }
             editProfile.setOnClickListener {
@@ -104,6 +104,32 @@ class ProfilFragment : Fragment() {
                 startActivity(intent)
             }
         }
+    }
+
+    private fun downloadFile() {
+//        val storage = FirebaseStorage.getInstance()
+//        val storageRef = storage.getReferenceFromUrl("<your_bucket>")
+
+        val rootPath = File(Environment.getExternalStorageDirectory(), "file_name")
+        if (!rootPath.exists()) {
+            rootPath.mkdirs()
+        }
+        val localFile = File(rootPath, "fileCv.txt")
+        var id_user = LoginPref(requireActivity()).getIdMhs().toString()
+
+        service.searchUsersById(id_user)
+            .get()
+            .addOnSuccessListener {
+                var url_cv = it.getString("url_cv")
+                storage.getReferenceFromUrl(url_cv!!)
+                    .getFile(localFile).addOnSuccessListener {
+                        Log.e("firebase ", ";local tem file created  created $localFile")
+                    }.addOnFailureListener {
+                        fun onFailure(@NonNull exception: Exception) {
+                            Log.e("firebase ", ";local tem file not created  created $exception")
+                        }
+                    }
+            }
     }
 
     private fun addCV(){
@@ -244,7 +270,7 @@ class ProfilFragment : Fragment() {
     private fun logout(){
         val isLogin = LoginPref(requireActivity())
         isLogin.logout()
-        val i = Intent(requireActivity(), RegisterMahasiswaActivity::class.java)
+        val i = Intent(requireActivity(), WelcomeActivity::class.java)
         i.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(i)
     }
@@ -252,7 +278,9 @@ class ProfilFragment : Fragment() {
     private fun uploadtoStorage (uri: Uri, nameFile: String?) {
         binding.progressBar.isVisible = true
         val storageRef = storage.reference
+        val random = UUID.randomUUID().toString()
         val path: String = "files/" + UUID.randomUUID() + "/" + nameFile
+//        val path: String = "files/" + random
         val filesRef = storageRef.child(path)
         val uploadFile = filesRef.putFile(uri)
 
@@ -303,15 +331,6 @@ class ProfilFragment : Fragment() {
                 }
 
             service.searchUsersById(id_user!!)
-                .update("nama_cv", nameFile)
-                .addOnSuccessListener {
-                    Timber.d("Sukses update nama cv ke firestore")
-                }
-                .addOnFailureListener { e ->
-                    Timber.tag(ContentValues.TAG).w(e, "Gagal update nama cv ke firestore")
-                }
-
-            service.searchUsersById(id_user!!)
                 .update("url_cv", downloadUri)
                 .addOnSuccessListener {
                     Timber.d("Sukses update url cv ke firestore")
@@ -319,6 +338,15 @@ class ProfilFragment : Fragment() {
                 .addOnFailureListener { e ->
                     Timber.tag(ContentValues.TAG).w(e, "Gagal update url cv ke firestore")
                 }
+
+//            service.searchUsersById(id_user!!)
+//                .update("id_cv", random)
+//                .addOnSuccessListener {
+//                    Timber.d("Sukses update id cv ke firestore")
+//                }
+//                .addOnFailureListener { e ->
+//                    Timber.tag(ContentValues.TAG).w(e, "Gagal update id cv ke firestore")
+//                }
 
         }
 

@@ -68,8 +68,6 @@ dependencies {
         room_version = "2.4.2",
         jupiterEngineVersion = "5.5.0"
 
-    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
-
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'

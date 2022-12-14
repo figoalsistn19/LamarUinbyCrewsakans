@@ -30,14 +30,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tvJobTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:gravity="center"
             android:text="Regional Manager"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -52,6 +52,7 @@
         android:paddingHorizontal="10dp"
         android:paddingVertical="5dp">
         <ImageView
+            android:id="@+id/item_foto_company"
             android:layout_width="130dp"
             android:layout_height="100dp"
             tools:src="@drawable/logo_bca"
