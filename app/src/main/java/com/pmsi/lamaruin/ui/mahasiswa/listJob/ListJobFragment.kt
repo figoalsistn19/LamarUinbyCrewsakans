@@ -68,6 +68,14 @@ class ListJobFragment : Fragment() {
             getJobWithInterest(interest!!)
         }
 
+        var nama_user = LoginPref(requireActivity()).getNamaMhs()
+        if(nama_user != null){
+            var first_name = getFirstName(nama_user)
+            binding.tvHello.text = "Hello, $first_name"
+        } else{
+            binding.tvHello.isVisible = false
+        }
+
         binding.apply {
             rvOtherJobList.apply {
                 layoutManager = LinearLayoutManager(requireActivity())
@@ -75,6 +83,12 @@ class ListJobFragment : Fragment() {
                 setHasFixedSize(true)
             }
         }
+    }
+
+    fun getFirstName(name: String): String {
+        val names = name.trim().split(Regex("\\s+"))
+        return names.first()
+//        return names.firstOrNull() to names.lastOrNull()
     }
 
     private fun getJobWithoutInterest(){

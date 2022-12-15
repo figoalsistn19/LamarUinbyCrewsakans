@@ -18,6 +18,7 @@
         android:paddingTop="20dp"
         android:paddingBottom="25dp">
         <TextView
+            android:id="@+id/tvHello"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hello, Ica!"

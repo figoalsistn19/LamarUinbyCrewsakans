@@ -10,8 +10,7 @@ import com.pmsi.lamaruin.databinding.ItemListAppliedBinding
 import com.pmsi.lamaruin.databinding.ItemListJobBinding
 
 class AppliedJobAdapter constructor(
-    private val data: MutableList<AppliedJob> = mutableListOf(),
-    private var listener: (ItemJob) -> Unit
+    private val data: MutableList<AppliedJob> = mutableListOf()
 ) :
     RecyclerView.Adapter<AppliedJobAdapter.FileViewHolder>() {
 
@@ -24,26 +23,32 @@ class AppliedJobAdapter constructor(
     inner class FileViewHolder(private val binding: ItemListAppliedBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(data: ItemJob) {
-            binding.itemFotoCompany.load(data.foto)
-            binding.itemPosition.text = data.job_name
-            binding.itemCompanyName.text = data.company_name
-            binding.itemCompanyLocation.text = data.company_city
-            binding.itemDeadline.text = data.tenggat
+        fun bind(data: AppliedJob) {
+            var status = data.status
+
+            binding.appliadFotoCompany.load(data.company_photo)
+            binding.appliedTitleJob.text = data.job_title
+            binding.appliedNameCompany.text = data.company_name
+            binding.appliedStatus.text = status
+
+            if(status == "Pending"){
+                binding.appliedMessage.text = "Kindly wait."
+            } else if (status == "Accepted") {
+                binding.appliedMessage.text = "Please check your email."
+            } else if (status == "Rejected"){
+                binding.appliedMessage.text = "Better luck next time!"
+            }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListJobAdapter.FileViewHolder =
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppliedJobAdapter.FileViewHolder =
         FileViewHolder(
-            ItemListJobBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemListAppliedBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
 
-    override fun onBindViewHolder(holder: ListJobAdapter.FileViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: AppliedJobAdapter.FileViewHolder, position: Int) {
         val item = data[position]
         holder.bind(item)
-        holder.itemView.setOnClickListener {
-            listener(item)
-        }
     }
 
     override fun getItemCount(): Int = data.size
