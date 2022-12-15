@@ -81,6 +81,7 @@ class ListJobFragment : Fragment() {
         binding.progressBar.isVisible = true
         binding.titleRecommend.isVisible = false
         binding.rvRecomJobList.isVisible = false
+        binding.titleOtherJob.isVisible = false
 
         service.getJob()
             .addSnapshotListener { value, e ->

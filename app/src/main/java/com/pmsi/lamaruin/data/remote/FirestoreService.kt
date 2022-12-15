@@ -2,12 +2,8 @@ package com.pmsi.lamaruin.data.remote
 
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.pmsi.lamaruin.data.model.CreateRecruiter
-import com.pmsi.lamaruin.data.model.CreateStudent
 import com.google.firebase.firestore.*
-import com.pmsi.lamaruin.data.model.Education
-import com.pmsi.lamaruin.data.model.Experience
-import com.pmsi.lamaruin.data.model.JobVacancy
+import com.pmsi.lamaruin.data.model.*
 
 class FirestoreService {
     private val db = Firebase.firestore
@@ -21,6 +17,27 @@ class FirestoreService {
                         listen(doc.id)
                     }
             }
+
+    fun addAppliedJob(appliedJob: AppliedJob, listen: (String) -> Unit) =
+        db.collection("AppliedJob")
+            .add(appliedJob)
+            .onSuccessTask { doc ->
+                doc.update("id_applied_job", doc.id)
+                    .addOnSuccessListener {
+                        listen(doc.id)
+                    }
+            }
+
+    fun addPelamar(id_job: String, item_list_pelamar: ItemListPelamar) =
+        db.collection("JobVacancy").document(id_job).collection("pelamar")
+            .add(item_list_pelamar)
+
+    fun checkPelamar(id_job: String, id_student: String) =
+        db.collection("JobVacancy")
+            .document(id_job)
+            .collection("pelamar")
+            .whereEqualTo("id_pelamar", id_student)
+
 
     fun addJob(jobVacancy: JobVacancy, listen: (String) -> Unit) =
         db.collection("JobVacancy")
