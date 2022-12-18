@@ -49,7 +49,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/change"
                 android:textColor="@color/white"
-                android:textSize="12dp"
                 app:layout_constraintEnd_toEndOf="@+id/ivProfile"
                 app:layout_constraintStart_toStartOf="@+id/ivProfile"
                 app:layout_constraintTop_toBottomOf="@+id/ivProfile" />

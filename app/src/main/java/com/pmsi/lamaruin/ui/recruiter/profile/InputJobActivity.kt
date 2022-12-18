@@ -57,6 +57,11 @@ class InputJobActivity : AppCompatActivity() {
         }
         binding.btnSubmitJob.setOnClickListener { inputJob() }
 
+        binding.btnBack.setOnClickListener{
+            onBackPressed()
+        }
+
+
     }
     private fun inputJob() {
 

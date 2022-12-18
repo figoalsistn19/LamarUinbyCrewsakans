@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">LamarUIN</string>
     <!-- TODO: Remove or change this placeholder text -->
-        <string name="lamaruin">LamarUIN</string>
+    <string name="lamaruin">LamarUIN</string>
     <string name="login_recruiter">Login as Recruiter</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
@@ -42,4 +42,5 @@
     <string name="change"><u>Change</u></string>
     <string name="alert_apply_title">Lamar Pekerjaan</string>
     <string name="are_you_sure_apply">Apa kamu yakin mau melamar sekarang?</string>
+    <string name="id_account">Id Account</string>
 </resources>

@@ -72,6 +72,10 @@ class FirestoreService {
         db.collection("student")
             .document(id)
 
+    fun searchRecrById(id: String) =
+        db.collection("recruiter")
+            .document(id)
+
     fun addRecruiter(recruiter: CreateRecruiter, listen: (String) -> Unit) =
         db.collection("recruiter")
             .add(recruiter)
