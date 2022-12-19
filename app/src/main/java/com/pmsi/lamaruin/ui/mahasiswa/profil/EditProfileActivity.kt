@@ -49,6 +49,9 @@ class EditProfileActivity : AppCompatActivity() {
             btnSave.setOnClickListener {
                 updateData()
             }
+            btnBack.setOnClickListener {
+                finish()
+            }
         }
     }
 
@@ -203,10 +206,6 @@ class EditProfileActivity : AppCompatActivity() {
                     override fun onNothingSelected(parent: AdapterView<*>) {
                         // write code to perform some action
                     }
-                }
-
-                binding.ivProfileEdit.load(foto){
-                    transformations(CircleCropTransformation())
                 }
 
             }

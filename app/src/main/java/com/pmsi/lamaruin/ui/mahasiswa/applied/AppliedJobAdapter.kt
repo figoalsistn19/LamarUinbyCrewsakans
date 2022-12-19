@@ -1,9 +1,11 @@
 package com.pmsi.lamaruin.ui.mahasiswa.applied
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.pmsi.lamaruin.R
 import com.pmsi.lamaruin.data.model.AppliedJob
 import com.pmsi.lamaruin.data.model.ItemJob
 import com.pmsi.lamaruin.databinding.ItemListAppliedBinding
@@ -33,10 +35,13 @@ class AppliedJobAdapter constructor(
 
             if(status == "Pending"){
                 binding.appliedMessage.text = "Kindly wait."
+                binding.appliedStatus.setTextColor(Color.parseColor("#DBD200"))
             } else if (status == "Accepted") {
                 binding.appliedMessage.text = "Please check your email."
+                binding.appliedStatus.setTextColor(Color.parseColor("#0DD109"))
             } else if (status == "Rejected"){
                 binding.appliedMessage.text = "Better luck next time!"
+                binding.appliedStatus.setTextColor(Color.parseColor("DB0000"))
             }
         }
     }
