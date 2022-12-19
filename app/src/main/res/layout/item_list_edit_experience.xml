@@ -59,7 +59,7 @@
         app:layout_constraintTop_toBottomOf="@+id/posisi" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/btnHapus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"

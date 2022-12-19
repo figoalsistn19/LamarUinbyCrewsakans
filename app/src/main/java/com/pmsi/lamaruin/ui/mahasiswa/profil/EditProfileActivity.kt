@@ -1,19 +1,26 @@
 package com.pmsi.lamaruin.ui.mahasiswa.profil
 
 import android.content.ContentValues
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import coil.transform.CircleCropTransformation
 import com.pmsi.lamaruin.R
 import com.pmsi.lamaruin.data.LoginPref
+import com.pmsi.lamaruin.data.model.Education
+import com.pmsi.lamaruin.data.model.Experience
 import com.pmsi.lamaruin.data.remote.FirestoreService
+import com.pmsi.lamaruin.databinding.ActivityAddEducationBinding
 import com.pmsi.lamaruin.databinding.ActivityEditProfileBinding
+import com.pmsi.lamaruin.databinding.ActivityRegisterMahasiswaBinding
+import com.pmsi.lamaruin.databinding.FragmentProfilBinding
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import javax.inject.Inject
@@ -43,7 +50,7 @@ class EditProfileActivity : AppCompatActivity() {
                 updateData()
             }
             btnBack.setOnClickListener {
-                onBackPressed()
+                finish()
             }
         }
     }
@@ -154,7 +161,6 @@ class EditProfileActivity : AppCompatActivity() {
                     .addOnFailureListener { e ->
                         Timber.tag(ContentValues.TAG).w(e, "Gagal update skill ke firestore")
                     }
-
             }
         }
     }
@@ -200,10 +206,6 @@ class EditProfileActivity : AppCompatActivity() {
                     override fun onNothingSelected(parent: AdapterView<*>) {
                         // write code to perform some action
                     }
-                }
-
-                binding.ivProfileEdit.load(foto){
-                    transformations(CircleCropTransformation())
                 }
 
             }

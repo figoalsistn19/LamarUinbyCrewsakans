@@ -49,31 +49,31 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingHorizontal="15dp"
             android:layout_marginTop="5dp">
 
-            <ImageView
-                android:id="@+id/ivProfileEdit"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginStart="15dp"
-                tools:src="@drawable/ic_baseline_person_24"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+<!--            <ImageView-->
+<!--                android:id="@+id/ivProfileEdit"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:layout_marginStart="15dp"-->
+<!--                tools:src="@drawable/ic_baseline_person_24"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
 
             <TextView
                 android:id="@+id/tvNama"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
                 android:text="Name"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/ivProfileEdit"
-                app:layout_constraintTop_toTopOf="@+id/ivProfileEdit" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/edit_nama"
-                android:layout_width="220dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Annisa Rosdiyana"
                 android:layout_marginTop="5dp"
@@ -98,7 +98,7 @@
 
             <EditText
                 android:id="@+id/edit_email"
-                android:layout_width="220dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="annisa@gmail.com"
                 android:layout_marginTop="5dp"

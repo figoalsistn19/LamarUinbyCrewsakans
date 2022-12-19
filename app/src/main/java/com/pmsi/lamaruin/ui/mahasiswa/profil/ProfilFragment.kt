@@ -1,14 +1,20 @@
 package com.pmsi.lamaruin.ui.mahasiswa.profil
 
 import android.annotation.SuppressLint
+import android.app.DownloadManager
+import java.io.FileOutputStream
+import java.net.URL
+import java.nio.channels.Channels
 import android.content.ContentResolver
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.os.Environment.DIRECTORY_DOWNLOADS
 import android.provider.OpenableColumns
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,6 +24,8 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.text.parseAsHtml
+import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,16 +35,17 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FileDownloadTask
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
+import com.pmsi.lamaruin.R
 import com.pmsi.lamaruin.WelcomeActivity
 import com.pmsi.lamaruin.data.LoginPref
 import com.pmsi.lamaruin.data.model.Education
 import com.pmsi.lamaruin.data.model.Experience
 import com.pmsi.lamaruin.data.remote.FirestoreService
 import com.pmsi.lamaruin.databinding.FragmentProfilBinding
+import com.pmsi.lamaruin.ui.mahasiswa.listJob.detail.CustomDialog
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.io.File
-import java.io.FileOutputStream
 import java.io.InputStream
 import java.io.OutputStream
 import java.text.SimpleDateFormat
@@ -61,11 +70,35 @@ class ProfilFragment : Fragment() {
     private var uriAvatar: Uri? = null
 
     private val listEditEduAdapter : ListEditEduAdapter by lazy {
-        ListEditEduAdapter()
+        ListEditEduAdapter{
+            var id_edu = it
+            var id_student = LoginPref(requireActivity()).getIdMhs()
+
+            if (id_edu != null && id_student != null){
+                service.hapusEdu(id_student, id_edu)
+                    .addOnSuccessListener {
+                        Log.d(TAG, "DocumentSnapshot successfully deleted!")
+                        onResume()
+                    }
+                    .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
+            }
+        }
     }
 
     private val listEditExpAdapter : ListEditExpAdapter by lazy {
-        ListEditExpAdapter()
+        ListEditExpAdapter{
+            var id_exp = it
+            var id_student = LoginPref(requireActivity()).getIdMhs()
+
+            if (id_exp != null && id_student != null){
+                service.hapusExp(id_student, id_exp)
+                    .addOnSuccessListener {
+                        Log.d(TAG, "DocumentSnapshot successfully deleted!")
+                        onResume()
+                    }
+                    .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
+            }
+        }
     }
 
     override fun onCreateView(
@@ -88,7 +121,7 @@ class ProfilFragment : Fragment() {
 
             tvNamaCV.setOnClickListener{
                 if (tvNamaCV.text != ""){
-                    downloadFile()
+                    getUrlCV()
                 }
             }
             editProfile.setOnClickListener {
@@ -106,33 +139,66 @@ class ProfilFragment : Fragment() {
         }
     }
 
-    private fun downloadFile() {
-//        val storage = FirebaseStorage.getInstance()
-//        val storageRef = storage.getReferenceFromUrl("<your_bucket>")
-
-        val rootPath = File(Environment.getExternalStorageDirectory(), "file_name")
-        if (!rootPath.exists()) {
-            rootPath.mkdirs()
-        }
-        val localFile = File(rootPath, "fileCv.txt")
+    private fun getUrlCV() {
         var id_user = LoginPref(requireActivity()).getIdMhs().toString()
 
         service.searchUsersById(id_user)
             .get()
             .addOnSuccessListener {
                 var url_cv = it.getString("url_cv")
+                var nama_cv = it.getString("nama_cv")
                 storage.getReferenceFromUrl(url_cv!!)
-                    .getFile(localFile).addOnSuccessListener {
-                        Log.e("firebase ", ";local tem file created  created $localFile")
+                    .downloadUrl.addOnSuccessListener {
+                        var urls = it.toString()
+                        downloadFile(requireActivity(), nama_cv!!, DIRECTORY_DOWNLOADS, urls)
                     }.addOnFailureListener {
-                        fun onFailure(@NonNull exception: Exception) {
-                            Log.e("firebase ", ";local tem file not created  created $exception")
-                        }
+                        // Handle any errors
                     }
             }
+
+
+//        val rootPath = File(Environment.getExternalStorageDirectory(), "file_name")
+//        if (!rootPath.exists()) {
+//            rootPath.mkdirs()
+//        }
+//        val localFile = File(rootPath, "fileCv.txt")
+//        var id_user = LoginPref(requireActivity()).getIdMhs().toString()
+//
+//        service.searchUsersById(id_user)
+//            .get()
+//            .addOnSuccessListener {
+//                var url_cv = it.getString("url_cv")
+//                storage.getReferenceFromUrl(url_cv!!)
+//                    .getFile(localFile).addOnSuccessListener {
+//                        Log.e("firebase ", ";local tem file created  created $localFile")
+//                    }.addOnFailureListener {
+//                        fun onFailure(@NonNull exception: Exception) {
+//                            Log.e("firebase ", ";local tem file not created  created $exception")
+//                        }
+//                    }
+//            }
+    }
+
+    private fun downloadFile(context: Context, fileName: String, destinationDirectory: String, urls: String) {
+        var url = Uri.parse(urls)
+        var downloadManager : DownloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+        var request = DownloadManager.Request(url)
+
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+        request.setDestinationInExternalFilesDir(context, destinationDirectory, fileName)
+
+        downloadManager.enqueue(request)
+//        url.openStream().use {
+//            Channels.newChannel(it).use { rbc ->
+//                FileOutputStream(outputFileName).use { fos ->
+//                    fos.channel.transferFrom(rbc, 0, Long.MAX_VALUE)
+//                }
+//            }
+//        }
     }
 
     private fun addCV(){
+        binding.progressBar.isVisible = true
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
         intent.addCategory(Intent.CATEGORY_OPENABLE)
         intent.type = "application/pdf"
@@ -220,7 +286,7 @@ class ProfilFragment : Fragment() {
                     var jurusan = doc.getString("field_of_study")
                     var degree = doc.getString("degree")
                     var univ = doc.getString("school")
-                    var id_edu = doc.getString("edu")
+                    var id_edu = doc.getString("id_edu")
                     var start_year = doc.getString("education_start_date")
                     var end_year = doc.getString("education_end_date")
                     var edu = Education(jurusan, degree, univ,start_year, end_year, id_edu)
@@ -251,7 +317,8 @@ class ProfilFragment : Fragment() {
                     var desc = doc.getString("experience_desc")
                     var exp_start_date = doc.getString("experience_start_date")
                     var exp_end_date = doc.getString("experience_end_date")
-                    var exp = Experience(title, role, desc, exp_start_date, exp_end_date)
+                    var id_experience = doc.getString("id_experience")
+                    var exp = Experience(title, role, desc, exp_start_date, exp_end_date, id_experience)
                     listExp.add(exp)
                 }
                 if (listExp.isEmpty()) {
@@ -267,12 +334,20 @@ class ProfilFragment : Fragment() {
             }
     }
 
-    private fun logout(){
-        val isLogin = LoginPref(requireActivity())
-        isLogin.logout()
-        val i = Intent(requireActivity(), WelcomeActivity::class.java)
-        i.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(i)
+    private fun logout() {
+        CustomDialog(requireActivity()).show(
+            getString(R.string.alert_logout_title),
+            getString(R.string.are_you_sure_logout)
+        ) {
+
+            if (it.toString() == "YES") {
+                val isLogin = LoginPref(requireActivity())
+                isLogin.logout()
+                val i = Intent(requireActivity(), WelcomeActivity::class.java)
+                i.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(i)
+            }
+        }
     }
 
     private fun uploadtoStorage (uri: Uri, nameFile: String?) {
@@ -290,7 +365,7 @@ class ProfilFragment : Fragment() {
                 binding.progressBar.isVisible = false
             }
             .addOnSuccessListener { taskSnapshot ->
-                Toast.makeText(requireActivity(), "Upload Berhasil", Toast.LENGTH_LONG).show()
+//                Toast.makeText(requireActivity(), "Upload Berhasil", Toast.LENGTH_LONG).show()
             }
 
         uploadFile.continueWithTask { task ->
@@ -318,6 +393,7 @@ class ProfilFragment : Fragment() {
 
         @SuppressLint("SimpleDateFormat")
         private fun uploadtoFirestore(downloadUri:Uri, nameFile : String?){
+            binding.progressBar.isVisible = true
             val id_user = LoginPref(requireActivity()).getIdMhs()
             val typeFile : Long = 5
 
@@ -328,15 +404,20 @@ class ProfilFragment : Fragment() {
                 }
                 .addOnFailureListener { e ->
                     Timber.tag(ContentValues.TAG).w(e, "Gagal update nama cv ke firestore")
+                    binding.progressBar.isInvisible = false
                 }
 
             service.searchUsersById(id_user!!)
                 .update("url_cv", downloadUri)
                 .addOnSuccessListener {
                     Timber.d("Sukses update url cv ke firestore")
+                    binding.progressBar.isInvisible = false
+                    Toast.makeText(requireActivity(), "Upload Berhasil", Toast.LENGTH_LONG).show()
+                    onResume()
                 }
                 .addOnFailureListener { e ->
                     Timber.tag(ContentValues.TAG).w(e, "Gagal update url cv ke firestore")
+                    binding.progressBar.isInvisible = false
                 }
 
 //            service.searchUsersById(id_user!!)
@@ -361,6 +442,7 @@ class ProfilFragment : Fragment() {
     }
 
     private fun startGallery() {
+        binding.progressBar.isVisible = true
         val intent = Intent()
         intent.action = Intent.ACTION_GET_CONTENT
         intent.type = "image/*"
@@ -408,6 +490,7 @@ class ProfilFragment : Fragment() {
     }
 
     private fun updateFoto(){
+        binding.progressBar.isVisible = true
         val storageRef = storage.reference
         val path : String = "avatar/"+ UUID.randomUUID()
         val filesRef = storageRef.child(path)
@@ -417,6 +500,7 @@ class ProfilFragment : Fragment() {
             .addOnFailureListener {
                 Timber.e(it.message)
                 Timber.e("Gagal upload avatar ke storage")
+                binding.progressBar.isVisible = false
             }
             .addOnSuccessListener { taskSnapshot ->
                 Timber.e("berhasil upload avatar ke storage")
@@ -439,6 +523,7 @@ class ProfilFragment : Fragment() {
                     .update("foto",downloadUri)
                     .addOnSuccessListener {
                         Timber.d("Sukses update avatar ke firestore")
+                        binding.progressBar.isVisible = false
                         binding.ivProfile.load(downloadUri){
                             transformations(CircleCropTransformation())
                         }

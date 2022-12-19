@@ -9,7 +9,8 @@ import com.pmsi.lamaruin.databinding.ItemListEditEducationBinding
 import com.pmsi.lamaruin.databinding.ItemListEditExperienceBinding
 
 class ListEditExpAdapter constructor(
-    private val data: MutableList<Experience> = mutableListOf()
+    private val data: MutableList<Experience> = mutableListOf(),
+    private var listener: (String?) -> Unit
 ) :
     RecyclerView.Adapter<ListEditExpAdapter.FileViewHolder>() {
 
@@ -27,6 +28,9 @@ class ListEditExpAdapter constructor(
             binding.namaPerusahaan.text = data.title
             binding.posisi.text = data.role
             binding.deskripsiExperience.text = data.experience_desc
+            binding.btnHapus.setOnClickListener {
+                listener(data.id_experience)
+            }
         }
     }
 

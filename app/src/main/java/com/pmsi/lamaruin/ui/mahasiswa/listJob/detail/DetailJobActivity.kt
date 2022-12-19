@@ -54,50 +54,47 @@ class DetailJobActivity : AppCompatActivity() {
 
         if(id_job != null && id_recruiter != null){
             setProfile(id_job, id_recruiter)
-//            sendDataJobtoFragment(id_job)
         }
 
         binding.btnLamar.setOnClickListener{
             whenBtnLamarClick(id_job, id_recruiter)
         }
-
-        // viewpager
-//        val sectionsPagerAdapter = SectionsPagerAdapter(this
-//        )
-//        binding.viewPagerDetailJob.adapter = sectionsPagerAdapter
-//        TabLayoutMediator(binding.tbDetailJob, binding.viewPagerDetailJob) { tab, position ->
-//            tab.text = resources.getString(TAB_TITLES[position])
-//        }.attach()
+        binding.btnBack.setOnClickListener { finish() }
     }
 
     private fun setProfile(id_job: String, id_recruiter: String){
 
-        // get company profile
-//        service.getRecruiterById(id_recruiter)
-//            .get()
-//            .addOnSuccessListener {
-//                var foto = it.getString("foto")
-//                var company_name = it.getString("name")
-//                var company_city = it.getString("city")
-//                  var company_desc = it.getString("company_desc")
-//
-//                binding.itemFotoCompany.load(foto)
-//                binding.itemCompanyName.text = company_name
-//                binding.itemCompanyLocation.text = company_city
-//            }
+        var foto : String?= ""
+        var company_name: String? = ""
+        var company_city: String? = ""
+        var company_desc: String? = ""
+//         get company profile
+        service.getRecruiterById(id_recruiter)
+            .get()
+            .addOnSuccessListener {
+                foto = it.getString("foto")
+                company_name = it.getString("company_name")
+                company_city = it.getString("company_address")
+                company_desc = it.getString("company_profile")
+
+                binding.itemFotoCompany.load(foto)
+                binding.itemCompanyName.text = company_name
+                binding.itemCompanyLocation.text = company_city
+                binding.tvDeskripsiCompany.text = company_desc
+            }
 
         // get company profile sementara
-        var foto = "https://karier.uinjkt.ac.id/public/main/1616805063_logo_portrait.png"
-        var company_name = "Pusat Karier UIN Jakarta"
-        var company_city = "Tanggerang Selatan"
-        var company_desc = "A company profile describes what makes your company unique. It automatically differentiates your brand because no other company has the exact same founding story and reason for existing that your business does. Your history and values are integral parts of your brand positioning strategy, and a company profile is where you can mention this information without it feeling extraneous or out of place. You can justify a higher price point for your products and services, if you go into details about your production values or ethically-sourced materials.\n" +
-                "\n" +
-                "For instance, Starbucks’ coffee may not necessarily be better than Dunkin’ Donuts’ coffee, but because Starbucks goes into details about its high-quality ingredients, it immediately creates the sense that you’ll be paying a little more for a \"better\" product."
+//        var foto = "https://karier.uinjkt.ac.id/public/main/1616805063_logo_portrait.png"
+//        var company_name = "Pusat Karier UIN Jakarta"
+//        var company_city = "Tanggerang Selatan"
+//        var company_desc = "A company profile describes what makes your company unique. It automatically differentiates your brand because no other company has the exact same founding story and reason for existing that your business does. Your history and values are integral parts of your brand positioning strategy, and a company profile is where you can mention this information without it feeling extraneous or out of place. You can justify a higher price point for your products and services, if you go into details about your production values or ethically-sourced materials.\n" +
+//                "\n" +
+//                "For instance, Starbucks’ coffee may not necessarily be better than Dunkin’ Donuts’ coffee, but because Starbucks goes into details about its high-quality ingredients, it immediately creates the sense that you’ll be paying a little more for a \"better\" product."
 
-        binding.itemFotoCompany.load(foto)
-        binding.itemCompanyName.text = company_name
-        binding.itemCompanyLocation.text = company_city
-        binding.tvDeskripsiCompany.text = company_desc
+//        binding.itemFotoCompany.load(foto)
+//        binding.itemCompanyName.text = company_name
+//        binding.itemCompanyLocation.text = company_city
+//        binding.tvDeskripsiCompany.text = company_desc
 
         // get detail job
         service.getJobById(id_job)
@@ -129,9 +126,8 @@ class DetailJobActivity : AppCompatActivity() {
                 var nama_student = ""
                 var email_student = ""
                 var foto_student = ""
-                var foto_company =
-                    "https://karier.uinjkt.ac.id/public/main/1616805063_logo_portrait.png" // sementara
-                var nama_company = "Pusat Karier UIN Jakarta" // sementara
+                var foto_company = ""
+                var nama_company = ""
                 var posisi_job = ""
 
                 // get detail student
@@ -141,6 +137,14 @@ class DetailJobActivity : AppCompatActivity() {
                         nama_student = it.getString("name").toString()
                         email_student = it.getString("email").toString()
                         foto_student = it.getString("foto").toString()
+                    }
+
+                // get detail company
+                service.getRecruiterById(id_recruiter!!)
+                    .get()
+                    .addOnSuccessListener {
+                        foto_company = it.getString("foto").toString()
+                        foto_company = it.getString("company_name").toString()
                     }
 
                 // get posisi job
@@ -187,20 +191,6 @@ class DetailJobActivity : AppCompatActivity() {
                             ).show()
                         }
                     }
-
-                // get detail company
-//                service.getRecruiterById(id_recruiter!!)
-//                    .get()
-//                    .addOnSuccessListener {
-//                        foto_company = it.getString("foto").toString()
-//                        foto_company = it.getString("name").toString()
-//                    }
-
-//            } else if (it.toString() == "NO") {
-//                val i = Intent(this, MainMahasiswaActivity::class.java)
-//                startActivity(i)
-//                finish()
-//            }
             }
         }
     }
@@ -219,30 +209,11 @@ class DetailJobActivity : AppCompatActivity() {
                 }
                 if(nama_pelamar != ""){
                     binding.btnLamar.isVisible = false
-//                    binding.scrollView.marginBottom = 0
 
                     val param = binding.scrollView.layoutParams as ViewGroup.MarginLayoutParams
-                    param.setMargins(0,170,0,0)
+                    param.setMargins(0,480,0,0)
                     binding.scrollView.layoutParams = param
                 }
             }
-    }
-    private fun sendDataJobtoFragment(id_job: String){
-        val fragmentManager: FragmentManager = supportFragmentManager
-        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-        val myFragment = JobDescriptionFragment()
-
-        val bundle = Bundle()
-        bundle.putString("id_job", id_job)
-        myFragment.arguments = bundle
-//        fragmentTransaction.add(binding.viewPagerDetailJob, myFragment).commit()
-    }
-
-    companion object {
-        @StringRes
-        private val TAB_TITLES = intArrayOf(
-            R.string.tab_detail_1,
-            R.string.tab_detail_2
-        )
     }
 }
