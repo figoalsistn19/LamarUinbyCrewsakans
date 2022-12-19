@@ -43,4 +43,5 @@
     <string name="alert_apply_title">Lamar Pekerjaan</string>
     <string name="are_you_sure_apply">Apa kamu yakin mau melamar sekarang?</string>
     <string name="id_account">Id Account</string>
+    <string name="job_deadline">Job Deadline</string>
 </resources>
