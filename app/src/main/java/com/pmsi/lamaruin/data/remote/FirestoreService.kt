@@ -107,6 +107,10 @@ class FirestoreService {
     fun getJob() : Query =
         db.collection("JobVacancy")
 
+    fun getJobForRecruiter(id_student: String) : Query =
+        db.collection("JobVacancy")
+            .whereEqualTo("id_recruiter", id_student)
+
     fun getAppliedJob(id_student: String) =
         db.collection("AppliedJob")
             .whereEqualTo("id_student", id_student)

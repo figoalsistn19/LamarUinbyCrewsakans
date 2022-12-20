@@ -2,25 +2,19 @@ package com.pmsi.lamaruin.ui.mahasiswa.listJob
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.pmsi.lamaruin.R
 import com.pmsi.lamaruin.data.LoginPref
-import com.pmsi.lamaruin.data.model.Education
 import com.pmsi.lamaruin.data.model.ItemJob
-import com.pmsi.lamaruin.data.model.JobVacancy
 import com.pmsi.lamaruin.data.remote.FirestoreService
 import com.pmsi.lamaruin.databinding.FragmentListJobBinding
-import com.pmsi.lamaruin.databinding.FragmentProfilBinding
 import com.pmsi.lamaruin.ui.mahasiswa.listJob.detail.DetailJobActivity
-import com.pmsi.lamaruin.ui.mahasiswa.profil.ListEditEduAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
-import java.util.ArrayList
 import javax.inject.Inject
 
 @AndroidEntryPoint

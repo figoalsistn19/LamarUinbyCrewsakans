@@ -4,10 +4,7 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.DatePicker
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.pmsi.lamaruin.MainRecuiterActivity
 import com.pmsi.lamaruin.R
@@ -15,6 +12,7 @@ import com.pmsi.lamaruin.data.LoginPref
 import com.pmsi.lamaruin.data.model.JobVacancy
 import com.pmsi.lamaruin.data.remote.FirestoreService
 import com.pmsi.lamaruin.databinding.ActivityInputJobBinding
+import com.pmsi.lamaruin.utils.DatePickerFragment
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
@@ -22,7 +20,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 
-class InputJobActivity : AppCompatActivity() {
+class InputJobActivity : AppCompatActivity(), DatePickerFragment.DialogDateListener {
 
     private var posisi_user: String? = "Marketing"
 
@@ -31,7 +29,9 @@ class InputJobActivity : AppCompatActivity() {
     @Inject
     lateinit var service: FirestoreService
 
-    var cal = Calendar.getInstance()
+//    var cal = Calendar.getInstance()
+
+    private var dueDateMillis: Long = System.currentTimeMillis()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,34 +64,51 @@ class InputJobActivity : AppCompatActivity() {
 
         binding.tvDate!!.text = "--/--/----"
 
-        val dateSetListener = object : DatePickerDialog.OnDateSetListener {
-            override fun onDateSet(view: DatePicker, year: Int, monthOfYear: Int,
-                                   dayOfMonth: Int) {
-                cal.set(Calendar.YEAR, year)
-                cal.set(Calendar.MONTH, monthOfYear)
-                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                updateDateInView()
-            }
-        }
-
-        binding.datePicker!!.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View) {
-                DatePickerDialog(this@InputJobActivity,
-                    dateSetListener,
-                    cal.get(Calendar.YEAR),
-                    cal.get(Calendar.MONTH),
-                    cal.get(Calendar.DAY_OF_MONTH)).show()
-            }
-
-        })
+//        val dateSetListener = object : DatePickerDialog.OnDateSetListener {
+//            override fun onDateSet(view: DatePicker, year: Int, monthOfYear: Int,
+//                                   dayOfMonth: Int) {
+//                cal.set(Calendar.YEAR, year)
+//                cal.set(Calendar.MONTH, monthOfYear)
+//                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+//                updateDateInView()
+//            }
+//        }
+//
+//        binding.datePicker!!.setOnClickListener(object : View.OnClickListener {
+//            override fun onClick(view: View) {
+//                DatePickerDialog(this@InputJobActivity,
+//                    dateSetListener,
+//                    cal.get(Calendar.YEAR),
+//                    cal.get(Calendar.MONTH),
+//                    cal.get(Calendar.DAY_OF_MONTH)).show()
+//            }
+//
+//        })
 
         binding.btnSubmitJob.setOnClickListener { inputJob() }
     }
 
-    private fun updateDateInView() {
-        val myFormat = "MM/dd/yyyy" // mention the format you need
-        val sdf = SimpleDateFormat(myFormat, Locale.US)
-        binding.tvDate!!.text = sdf.format(cal.getTime())
+
+//    private fun updateDateInView() {
+//        val calendar = Calendar.getInstance()
+//        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+//        binding.tvDate.text = dateFormat.format(calendar.time)
+//
+//        dueDateMillis = calendar.timeInMillis
+//    }
+
+    fun showDatePicker(view: View) {
+        val dialogFragment = DatePickerFragment()
+        dialogFragment.show(supportFragmentManager, "datePicker")
+    }
+
+    override fun onDialogDateSet(tag: String?, year: Int, month: Int, dayOfMonth: Int) {
+        val calendar = Calendar.getInstance()
+        calendar.set(year, month, dayOfMonth)
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        binding.tvDate.text = dateFormat.format(calendar.time)
+
+        dueDateMillis = calendar.timeInMillis
     }
 
     private fun inputJob() {
@@ -100,7 +117,7 @@ class InputJobActivity : AppCompatActivity() {
         val jobDesc = binding.etJobDesc.text.toString()
         val qualification = binding.etQualification.text.toString()
         val jobCategory = posisi_user.toString()
-        val jobDeadline = binding.tvDate.text.toString()
+        val jobDeadline = dueDateMillis
 
         when {
             jobName.isEmpty() -> {
