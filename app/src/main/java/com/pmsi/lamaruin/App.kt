@@ -16,7 +16,7 @@ class App : Application() {
         if (BuildConfig.DEBUG) {
             plant(Timber.DebugTree())
         }
-        setupActivityListener()
+//        setupActivityListener()
     }
 
     private fun setupActivityListener() {
