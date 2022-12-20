@@ -18,9 +18,18 @@
         android:theme="@style/Theme.LamarUIN"
         tools:targetApi="31">
         <activity
-            android:name=".ui.recruiter.activelisting.detail.ApplicantListActivity"
+            android:name=".ui.recruiter.activelisting.detail.detailpelamar.DetailApplicantActivity"
             android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
         </activity>
+        <activity
+            android:name=".ui.recruiter.activelisting.detail.ApplicantListActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".ui.recruiter.profile.EditProfileRecrActivity"
+            android:exported="false"/>
         <activity
             android:name=".ui.mahasiswa.profil.DetailCvActivity"
             android:exported="false" />

@@ -250,6 +250,7 @@ class ProfilFragment : Fragment() {
                 var nama_cv = it.getString("nama_cv")
                 var link_cv = it.getString("link_cv")
 
+
                 binding.ivProfile.load(foto){
                     transformations(CircleCropTransformation())
                 }

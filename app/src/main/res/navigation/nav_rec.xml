@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_profileRecFragment_to_inputJobActivity"
             app:destination="@id/inputJobActivity" />
+        <action
+            android:id="@+id/action_profileRecFragment_to_editProfileRecrActivity"
+            app:destination="@id/editProfileRecrActivity" />
     </fragment>
     <activity
         android:id="@+id/inputJobActivity"
@@ -30,4 +33,9 @@
         android:name="com.pmsi.lamaruin.ui.recruiter.activelisting.ActiveListinggFragment"
         android:label="fragment_active_listingg"
         tools:layout="@layout/fragment_active_listingg" />
+    <activity
+        android:id="@+id/editProfileRecrActivity"
+        android:name="com.pmsi.lamaruin.ui.recruiter.profile.EditProfileRecrActivity"
+        android:label="activity_edit_profile_recr"
+        tools:layout="@layout/activity_edit_profile_recr" />
 </navigation>

@@ -16,7 +16,10 @@ import com.pmsi.lamaruin.ui.mahasiswa.listJob.detail.DetailJobActivity
 import com.pmsi.lamaruin.ui.recruiter.activelisting.detail.ApplicantListActivity
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
 class ActiveListinggFragment : Fragment() {
@@ -73,7 +76,8 @@ class ActiveListinggFragment : Fragment() {
                         var id_recruiter = doc.getString("id_recruiter")
                         var cat = doc.getString("job_category")
                         var name = doc.getString("job_name")
-                        var tenggat = "12-12-2022"
+                        var tenggat = doc.getLong("job_deadline")
+                        var tenggats = changeDate(tenggat!!)
 
                         var foto : String? = ""
                         var company_name : String? = ""
@@ -88,7 +92,7 @@ class ActiveListinggFragment : Fragment() {
                                         company_name = it.getString("company_name")
                                         company_city = it.getString("company_address")
 
-                                        var job = ItemJob(id_job,id_recruiter,name,cat,company_name,company_city,foto,tenggat)
+                                        var job = ItemJob(id_job,id_recruiter,name,cat,company_name,company_city,foto,tenggats)
                                         itemJob.add(job)
 
                                         if (itemJob.isEmpty()) {
@@ -106,6 +110,12 @@ class ActiveListinggFragment : Fragment() {
 //                    company_city = "Tanggerang Selatan"
                     }
                 }
+    }
+
+    private fun changeDate(date: Long) : String{
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        var date = dateFormat.format(date)
+        return date
     }
 
 

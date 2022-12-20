@@ -11,7 +11,7 @@ import com.pmsi.lamaruin.databinding.ItemListJobBinding
 
 class ApplicantListAdapter constructor(
     private val data: MutableList<ItemListPelamar> = mutableListOf(),
-
+    private var listener: (ItemListPelamar) -> Unit
 ) :
     RecyclerView.Adapter<ApplicantListAdapter.FileViewHolder>() {
 
@@ -40,7 +40,7 @@ class ApplicantListAdapter constructor(
         val item = data[position]
         holder.bind(item)
         holder.itemView.setOnClickListener {
-
+            listener(item)
         }
     }
 
