@@ -29,7 +29,8 @@ import com.pmsi.lamaruin.databinding.ActivityMainMahasiswaBinding
 import com.pmsi.lamaruin.utils.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
-import java.util.ArrayList
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -83,19 +84,6 @@ class DetailJobActivity : AppCompatActivity() {
                 binding.tvDeskripsiCompany.text = company_desc
             }
 
-        // get company profile sementara
-//        var foto = "https://karier.uinjkt.ac.id/public/main/1616805063_logo_portrait.png"
-//        var company_name = "Pusat Karier UIN Jakarta"
-//        var company_city = "Tanggerang Selatan"
-//        var company_desc = "A company profile describes what makes your company unique. It automatically differentiates your brand because no other company has the exact same founding story and reason for existing that your business does. Your history and values are integral parts of your brand positioning strategy, and a company profile is where you can mention this information without it feeling extraneous or out of place. You can justify a higher price point for your products and services, if you go into details about your production values or ethically-sourced materials.\n" +
-//                "\n" +
-//                "For instance, Starbucks’ coffee may not necessarily be better than Dunkin’ Donuts’ coffee, but because Starbucks goes into details about its high-quality ingredients, it immediately creates the sense that you’ll be paying a little more for a \"better\" product."
-
-//        binding.itemFotoCompany.load(foto)
-//        binding.itemCompanyName.text = company_name
-//        binding.itemCompanyLocation.text = company_city
-//        binding.tvDeskripsiCompany.text = company_desc
-
         // get detail job
         service.getJobById(id_job)
             .get()
@@ -103,13 +91,23 @@ class DetailJobActivity : AppCompatActivity() {
                 var job_title = it.getString("job_name")
                 var job_qualification = it.getString("qualification")
                 var job_desc = it.getString("job_desc")
-                var tenggat = "12-12-2022" // ini sementara
+                var tenggat = it.getLong("job_deadline")
+                var tenggatString = ""
+                if (tenggat != null){
+                    tenggatString = changeDate(tenggat)
+                }
 
                 binding.tvJobTitle.text = job_title
-                binding.itemDeadline.text = tenggat
+                binding.itemDeadline.text = "Dibuka sampai $tenggatString"
                 binding.tvKualifikasi.text = job_qualification
                 binding.tvDeskripsiJob.text = job_desc
             }
+    }
+
+    fun changeDate(date: Long) : String{
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        var date = dateFormat.format(date)
+        return date
     }
 
     private fun whenBtnLamarClick(id_job: String?, id_recruiter: String?) {
@@ -144,7 +142,7 @@ class DetailJobActivity : AppCompatActivity() {
                     .get()
                     .addOnSuccessListener {
                         foto_company = it.getString("foto").toString()
-                        foto_company = it.getString("company_name").toString()
+                        nama_company = it.getString("company_name").toString()
                     }
 
                 // get posisi job

@@ -18,12 +18,8 @@
         android:theme="@style/Theme.LamarUIN"
         tools:targetApi="31">
         <activity
-            android:name=".ui.recruiter.profile.EditProfileRecrActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+            android:name=".ui.mahasiswa.listJob.search.SearchJobActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.mahasiswa.profil.DetailCvActivity"
             android:exported="false" />

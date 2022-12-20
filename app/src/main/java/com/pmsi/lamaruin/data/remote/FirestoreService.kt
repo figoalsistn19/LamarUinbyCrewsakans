@@ -28,6 +28,10 @@ class FirestoreService {
                     }
             }
 
+    fun getSearchJob(text : String?) =
+        db.collection("JobVacancy")
+            .orderBy("job_name").startAt(text).endAt(text + "\uf8ff")
+
     fun hapusEdu (id_student: String, id_edu: String) =
         db.collection("student").document(id_student)
             .collection("education").document(id_edu)

@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.ui.setupWithNavController
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -40,5 +41,10 @@ class MainMahasiswaActivity : AppCompatActivity() {
         binding.apply {
             bottomNavView.setupWithNavController(navController)
         }
+    }
+
+    fun replaceFragment(fragment: Fragment, tag: String) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container, fragment, tag).addToBackStack("").commit()
     }
 }
