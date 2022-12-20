@@ -52,7 +52,10 @@ class FirestoreService {
             .collection("pelamar")
             .whereEqualTo("id_pelamar", id_student)
 
-
+    fun getPelamar(id_job: String) =
+        db.collection("JobVacancy")
+            .document(id_job)
+            .collection("pelamar")
     fun addJob(jobVacancy: JobVacancy, listen: (String) -> Unit) =
         db.collection("JobVacancy")
             .add(jobVacancy)
@@ -132,6 +135,10 @@ class FirestoreService {
     fun getJobById(id: String) =
         db.collection("JobVacancy")
             .document(id)
+
+    fun getJobByRecruiterId(id_user: String) =
+            db.collection("JobVacancy")
+                    .whereEqualTo("id_recruiter", id_user)
 
     fun getJobWithInterest(interest: String) : Query =
         db.collection("JobVacancy")

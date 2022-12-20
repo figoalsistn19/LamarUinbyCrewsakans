@@ -7,7 +7,7 @@
         android:title="@string/listJob" />
 
     <item
-        android:id="@+id/activeListingFragment"
+        android:id="@+id/activeListinggFragment"
         android:icon="@drawable/ic_baseline_library_books_24"
         android:title="@string/activelisting" />
 
