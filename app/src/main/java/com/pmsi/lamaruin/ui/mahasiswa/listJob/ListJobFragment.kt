@@ -2,6 +2,8 @@ package com.pmsi.lamaruin.ui.mahasiswa.listJob
 
 import android.content.Intent
 import android.os.Bundle
+import java.util.Timer
+import kotlin.concurrent.schedule
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.fragment.app.Fragment
@@ -103,6 +105,7 @@ class ListJobFragment : Fragment() {
                     getJobWithoutInterest()
                 } else if (interest != ""){
                     getJobWithInterest(interest!!)
+//                    getJobByDate(interest!!)
                 }
             }
 
@@ -129,6 +132,93 @@ class ListJobFragment : Fragment() {
         val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
         var date = dateFormat.format(date)
         return date
+    }
+
+    private fun getJobByDate(interest: String){
+        binding.progressBar.isVisible = true
+        var date = getDateToday()
+        service.getJobByDate(date)
+            .addSnapshotListener { value, e ->
+                if (e != null) {
+                    Timber.d("Listen failed.")
+                    binding.progressBar.isVisible = false
+                    return@addSnapshotListener
+                }
+                var listOtherJob = ArrayList<ItemJob>()
+                var listRecJob = ArrayList<ItemJob>()
+                for (doc in value!!) {
+                    var id_job = doc.getString("id_job")
+                    var id_recruiter = doc.getString("id_recruiter")
+                    var cat = doc.getString("job_category")
+                    var name = doc.getString("job_name")
+                    var tenggat = doc.getLong("job_deadline")
+                    var tenggatString = changeDate(tenggat!!)
+
+                    var foto : String? = ""
+                    var company_name : String? = ""
+                    var company_city : String? = ""
+
+//                    get company profile
+                    if(id_recruiter != null) {
+                        service.getRecruiterById(id_recruiter)
+                            .get()
+                            .addOnSuccessListener {
+                                foto = it.getString("foto")
+                                company_name = it.getString("company_name")
+                                company_city = it.getString("company_address")
+
+                                var job = ItemJob(
+                                    id_job,
+                                    id_recruiter,
+                                    name,
+                                    cat,
+                                    company_name,
+                                    company_city,
+                                    foto,
+                                    tenggatString
+                                )
+
+                                if (cat == interest) {
+                                    listRecJob.add(job)
+                                } else {
+                                    listOtherJob.add(job)
+                                }
+                            }
+                    }
+                }
+                // Delay of 5 sec
+                Timer().schedule(5000){
+                    //calling a function
+                    pengecekan(listOtherJob, listRecJob)
+                }
+            }
+    }
+
+    private fun pengecekan(listOtherJob: ArrayList<ItemJob>, listRecJob: ArrayList<ItemJob>){
+        if (listRecJob.isEmpty() && listOtherJob.isNotEmpty()){
+            binding.titleRecommend.isVisible = false
+            binding.titleOtherJob.isVisible = false
+            binding.rvRecomJobList.isVisible = false
+            binding.rvOtherJobList.isVisible = true
+            listJobAdapter.setData(listOtherJob)
+            binding.progressBar.isVisible = false
+            binding.tvNothingJob.isVisible = false
+        } else if (listOtherJob.isEmpty() && listRecJob.isNotEmpty()){
+            binding.titleRecommend.isVisible = false
+            binding.titleOtherJob.isVisible = false
+            binding.rvOtherJobList.isVisible = false
+            binding.rvRecomJobList.isVisible = true
+            listRecomJobAdapter.setData(listRecJob)
+            binding.progressBar.isVisible = false
+            binding.tvNothingJob.isVisible = false
+        } else if (listOtherJob.isEmpty() && listRecJob.isEmpty()){
+            binding.titleRecommend.isVisible = false
+            binding.titleOtherJob.isVisible = false
+            binding.rvOtherJobList.isVisible = false
+            binding.rvRecomJobList.isVisible = false
+            binding.tvNothingJob.isVisible = true
+            binding.progressBar.isVisible = false
+        }
     }
 
     private fun getJobWithoutInterest(){
@@ -313,7 +403,7 @@ class ListJobFragment : Fragment() {
                 if (value.isEmpty){
                     binding.tvNothingJob.isVisible = true
                     binding.titleOtherJob.isVisible = true
-                    binding.rvOtherJobList.isVisible = false
+//                    binding.rvOtherJobList.isVisible = false
                     binding.progressBar.isVisible = false
                 }
             }
@@ -321,9 +411,9 @@ class ListJobFragment : Fragment() {
 
     private fun setOtherJob(listJob: ArrayList<ItemJob>){
         if (listJob.isEmpty()) {
-            binding.tvNothingJob.isVisible = true
+//            binding.tvNothingJob.isVisible = true
             binding.titleOtherJob.isVisible = true
-            binding.rvOtherJobList.isVisible = false
+//            binding.rvOtherJobList.isVisible = false
             binding.progressBar.isVisible = false
         } else {
             listJobAdapter.setData(listJob)
