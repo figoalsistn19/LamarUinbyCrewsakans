@@ -17,6 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
+            android:id="@+id/btn_back"
             android:layout_width="29dp"
             android:layout_height="22dp"
             android:layout_marginTop="16dp"
@@ -101,14 +102,23 @@
         android:id="@+id/btn_submit_job"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
         android:background="@drawable/bg_btn"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner"
-        app:layout_constraintVertical_bias="0.927" />
+        app:layout_constraintTop_toBottomOf="@+id/date_picker" />
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/custom_rounded_stroke_grey"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/date_picker"
+        app:layout_constraintStart_toEndOf="@+id/date_picker"
+        app:layout_constraintTop_toTopOf="@+id/date_picker" />
 
     <Spinner
         android:id="@+id/spinner"
@@ -135,20 +145,42 @@
         android:id="@+id/etQualification"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:inputType="textMultiLine"
-        android:lines="8"
-        android:minLines="6"
-        android:gravity="top|start"
-        android:maxLines="10"
-        android:scrollbars="vertical"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/custom_rounded_stroke_grey"
+        android:gravity="top|start"
+        android:inputType="textMultiLine"
+        android:lines="8"
+        android:maxLines="10"
+        android:minLines="6"
+        android:scrollbars="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
+    <TextView
+        android:id="@+id/tv_deadline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/job_deadline"
+        app:layout_constraintStart_toStartOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/etQualification" />
+
+    <ImageButton
+        style="@style/Base.Widget.AppCompat.ImageButton"
+        android:id="@+id/date_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:onClick="showDatePicker"
+        android:padding="4dp"
+        android:src="@drawable/ic_baseline_date_range_24"
+        android:background="@drawable/custom_rounded_stroke_grey"
+        app:layout_constraintStart_toStartOf="@+id/tv_deadline"
+        app:layout_constraintTop_toBottomOf="@+id/tv_deadline" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

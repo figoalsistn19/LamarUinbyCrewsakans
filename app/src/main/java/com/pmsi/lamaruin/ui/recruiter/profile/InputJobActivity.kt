@@ -1,28 +1,26 @@
 package com.pmsi.lamaruin.ui.recruiter.profile
 
+import android.app.DatePickerDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
-import androidx.core.view.isVisible
-import com.pmsi.lamaruin.MainMahasiswaActivity
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import com.pmsi.lamaruin.MainRecuiterActivity
 import com.pmsi.lamaruin.R
 import com.pmsi.lamaruin.data.LoginPref
-import com.pmsi.lamaruin.data.model.CreateStudent
 import com.pmsi.lamaruin.data.model.JobVacancy
 import com.pmsi.lamaruin.data.remote.FirestoreService
 import com.pmsi.lamaruin.databinding.ActivityInputJobBinding
+import com.pmsi.lamaruin.utils.DatePickerFragment
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
 
-class InputJobActivity : AppCompatActivity() {
+class InputJobActivity : AppCompatActivity(), DatePickerFragment.DialogDateListener {
 
     private var posisi_user: String? = "Marketing"
 
@@ -30,6 +28,10 @@ class InputJobActivity : AppCompatActivity() {
 
     @Inject
     lateinit var service: FirestoreService
+
+//    var cal = Calendar.getInstance()
+
+    private var dueDateMillis: Long = System.currentTimeMillis()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,15 +57,67 @@ class InputJobActivity : AppCompatActivity() {
                 // write code to perform some action
             }
         }
-        binding.btnSubmitJob.setOnClickListener { inputJob() }
 
+        binding.btnBack.setOnClickListener{
+            onBackPressed()
+        }
+
+        binding.tvDate!!.text = "--/--/----"
+
+//        val dateSetListener = object : DatePickerDialog.OnDateSetListener {
+//            override fun onDateSet(view: DatePicker, year: Int, monthOfYear: Int,
+//                                   dayOfMonth: Int) {
+//                cal.set(Calendar.YEAR, year)
+//                cal.set(Calendar.MONTH, monthOfYear)
+//                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+//                updateDateInView()
+//            }
+//        }
+//
+//        binding.datePicker!!.setOnClickListener(object : View.OnClickListener {
+//            override fun onClick(view: View) {
+//                DatePickerDialog(this@InputJobActivity,
+//                    dateSetListener,
+//                    cal.get(Calendar.YEAR),
+//                    cal.get(Calendar.MONTH),
+//                    cal.get(Calendar.DAY_OF_MONTH)).show()
+//            }
+//
+//        })
+
+        binding.btnSubmitJob.setOnClickListener { inputJob() }
     }
+
+
+//    private fun updateDateInView() {
+//        val calendar = Calendar.getInstance()
+//        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+//        binding.tvDate.text = dateFormat.format(calendar.time)
+//
+//        dueDateMillis = calendar.timeInMillis
+//    }
+
+    fun showDatePicker(view: View) {
+        val dialogFragment = DatePickerFragment()
+        dialogFragment.show(supportFragmentManager, "datePicker")
+    }
+
+    override fun onDialogDateSet(tag: String?, year: Int, month: Int, dayOfMonth: Int) {
+        val calendar = Calendar.getInstance()
+        calendar.set(year, month, dayOfMonth)
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        binding.tvDate.text = dateFormat.format(calendar.time)
+
+        dueDateMillis = calendar.timeInMillis
+    }
+
     private fun inputJob() {
 
         val jobName = binding.etJobName.text.toString()
         val jobDesc = binding.etJobDesc.text.toString()
         val qualification = binding.etQualification.text.toString()
         val jobCategory = posisi_user.toString()
+        val jobDeadline = dueDateMillis
 
         when {
             jobName.isEmpty() -> {
@@ -84,7 +138,8 @@ class InputJobActivity : AppCompatActivity() {
                     job_desc = jobDesc,
                     job_category = jobCategory,
                     qualification = qualification,
-                    id_recruiter = id_user
+                    id_recruiter = id_user,
+                    job_deadline = jobDeadline
                 )
                 service.addJob(job) { id ->
                     Toast.makeText(
