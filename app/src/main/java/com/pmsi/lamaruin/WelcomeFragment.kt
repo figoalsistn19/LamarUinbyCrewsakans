@@ -37,11 +37,13 @@ class WelcomeFragment : Fragment() {
         val role = loginPref.getRole()
 
         if (isLogin && role=="student") {
-            val intent = Intent(requireActivity(), MainMahasiswaActivity::class.java)
-            startActivity(intent)
+            val i = Intent(requireActivity(), MainMahasiswaActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(i)
         } else if (isLogin && role!="student"){
-            val intent = Intent(requireActivity(), MainRecuiterActivity::class.java)
-            startActivity(intent)
+            val i = Intent(requireActivity(), MainRecuiterActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(i)
         }
 
         binding.button.setOnClickListener (

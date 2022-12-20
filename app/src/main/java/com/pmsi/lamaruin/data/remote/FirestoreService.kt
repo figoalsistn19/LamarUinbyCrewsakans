@@ -127,11 +127,15 @@ class FirestoreService {
 
     fun getJobWithInterest(interest: String) : Query =
         db.collection("JobVacancy")
-            .whereNotEqualTo("job_category", interest)
+//            .whereNotEqualTo("job_category", interest)
 
     fun getRecommendJob(interest: String) : Query =
         db.collection("JobVacancy")
             .whereEqualTo("job_category", interest)
+
+    fun getJobByDate(date : Long) : Query =
+        db.collection("JobVacancy")
+            .whereGreaterThan("job_deadline", date)
 
     fun getRecruiterById(id_user: String) =
         db.collection("recruiter")
