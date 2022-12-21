@@ -94,9 +94,9 @@ class RegisterRecruiterActivity : AppCompatActivity() {
                                         service.updateStatusKode(id_kode)
 
                                         val recruiters = CreateRecruiter(
-                                            name,
-                                            email,
-                                            noHp,
+                                            name = name,
+                                            email = email,
+                                            no_hp =noHp,
                                             password_recruiter = password
                                         )
 

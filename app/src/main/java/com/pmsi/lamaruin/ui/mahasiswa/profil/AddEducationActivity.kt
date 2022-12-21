@@ -12,7 +12,6 @@ import com.pmsi.lamaruin.data.LoginPref
 import com.pmsi.lamaruin.data.model.Education
 import com.pmsi.lamaruin.data.remote.FirestoreService
 import com.pmsi.lamaruin.databinding.ActivityAddEducationBinding
-import com.pmsi.lamaruin.databinding.ActivityEditProfileBinding
 import com.pmsi.lamaruin.utils.DatePickerFragment
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat

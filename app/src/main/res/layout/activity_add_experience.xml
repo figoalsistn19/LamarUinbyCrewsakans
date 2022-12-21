@@ -147,16 +147,19 @@
 
         <ImageButton
             style="@style/Base.Widget.AppCompat.ImageButton"
-            android:layout_width="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="2dp"
             android:onClick="showDateStartPicker"
-            android:layout_height="wrap_content"
-            android:contentDescription="Start Date"
-            android:src="@drawable/ic_date" />
+            android:contentDescription="End Date"
+            android:src="@drawable/ic_baseline_date_range_24"
+            android:background="@drawable/custom_rounded_stroke_grey" />
 
         <TextView
             android:id="@+id/add_tv_start_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
             android:text="Start Date" />
     </LinearLayout>
 
@@ -170,14 +173,17 @@
 
         <ImageButton
             style="@style/Base.Widget.AppCompat.ImageButton"
-            android:layout_width="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="2dp"
             android:onClick="showDateEndPicker"
-            android:layout_height="wrap_content"
-            android:contentDescription="Start Date"
-            android:src="@drawable/ic_date" />
+            android:contentDescription="End Date"
+            android:src="@drawable/ic_baseline_date_range_24"
+            android:background="@drawable/custom_rounded_stroke_grey" />
 
         <TextView
             android:id="@+id/add_tv_end_date"
+            android:layout_marginLeft="4dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="End Date" />

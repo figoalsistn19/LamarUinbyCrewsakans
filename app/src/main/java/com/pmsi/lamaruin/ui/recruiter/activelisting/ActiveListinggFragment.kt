@@ -115,6 +115,7 @@ class ActiveListinggFragment : Fragment() {
                     }
                     if (value.isEmpty){
                         binding.progressBar.isVisible = false
+                        binding.tvNothingJobAdded.isVisible = true
                     }
                 }
     }

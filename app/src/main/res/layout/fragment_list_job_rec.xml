@@ -56,9 +56,11 @@
         android:id="@+id/tvNothingJob"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Maaf. tidak ada lowongan yang tersedia"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:text="Kamu belum membuat lowongan"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="100dp"
         android:visibility="gone"/>
 
 </LinearLayout>

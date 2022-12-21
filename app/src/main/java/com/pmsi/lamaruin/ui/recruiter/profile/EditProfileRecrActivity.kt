@@ -113,6 +113,8 @@ class EditProfileRecrActivity : AppCompatActivity() {
                     .update("company_profile", companyProfile)
                     .addOnSuccessListener {
                         Timber.d("Sukses update Company Profile ke firestore")
+                        binding.progressBar.isVisible = false
+                        finish()
                     }
                     .addOnFailureListener { e ->
                         Timber.tag(ContentValues.TAG).w(e, "Gagal update Company Profile ke firestore")

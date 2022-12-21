@@ -67,6 +67,19 @@ class ListJobRecFragment : Fragment() {
             }
         }
 
+        var nama_user = LoginPref(requireActivity()).getNamaMhs()
+        if(nama_user != null){
+            var first_name = getFirstName(nama_user)
+            binding.tvHello.text = "Hello, $first_name!"
+        } else{
+            binding.tvHello.isVisible = false
+        }
+
+    }
+
+    fun getFirstName(name: String): String {
+        val names = name.trim().split(Regex("\\s+"))
+        return names.first()
     }
 
     private fun getJobByRecruiterId(){
@@ -117,6 +130,9 @@ class ListJobRecFragment : Fragment() {
 //                    company_name = "Pusat Karier UIN Jakarta"
 //                    company_city = "Tanggerang Selatan"
                 }
+                        if (value.isEmpty){
+                            binding.tvNothingJob.isVisible = true
+                        }
             }
     }
 

@@ -36,7 +36,7 @@
         android:id="@+id/tvNothingJobAdded"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No Job Added"
+        android:text="Kamu belum membuat lowongan"
         android:textSize="20sp"
         android:textStyle="bold"
         android:visibility="gone"
