@@ -150,14 +150,6 @@ class DetailJobActivity : AppCompatActivity() {
                                 foto_company = it.getString("foto").toString()
                                 nama_company = it.getString("company_name").toString()
 
-                                val item_list_pelamar = ItemListPelamar(
-                                    id_applied_job = id_job,
-                                    id_pelamar = id_student,
-                                    foto = foto_student,
-                                    email = email_student,
-                                    nama = nama_student
-                                )
-
                                 val applied_job = AppliedJob(
                                     status = "Pending",
                                     id_student = id_student,
@@ -172,6 +164,15 @@ class DetailJobActivity : AppCompatActivity() {
                                 service.addAppliedJob(applied_job) {
 
                                     // update collection job
+                                    val item_list_pelamar = ItemListPelamar(
+                                        id_job = id_job,
+                                        id_applied_job = it,
+                                        id_pelamar = id_student,
+                                        foto = foto_student,
+                                        email = email_student,
+                                        nama = nama_student
+                                    )
+
                                     service.addPelamar(id_job!!, item_list_pelamar)
 
                                     binding.progressBar.isVisible = false
