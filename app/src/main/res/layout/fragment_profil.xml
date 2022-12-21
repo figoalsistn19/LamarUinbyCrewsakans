@@ -291,7 +291,7 @@
                 android:layout_marginStart="20dp"
                 android:textStyle="italic"
                 android:layout_marginTop="5dp"
-                android:visibility="gone"/>
+                android:visibility="visible"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvListEducation"
@@ -330,7 +330,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Experience Not Yet Added"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="20dp"
                 android:textStyle="italic"
                 android:layout_marginTop="5dp"
                 android:visibility="gone"/>

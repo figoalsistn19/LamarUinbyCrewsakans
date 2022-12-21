@@ -55,16 +55,14 @@ class DetailApplicantActivity : AppCompatActivity() {
 
         binding.btnAcc.setOnClickListener{
             statusApplicantAcc()
-            onBackPressed()
         }
 
         binding.tvNamaCV.setOnClickListener{
-                getUrlCV(id)
+            getUrlCV(id)
         }
 
         binding.btnReject.setOnClickListener {
             statusApplicantRej()
-            onBackPressed()
         }
 
     }
@@ -76,6 +74,7 @@ class DetailApplicantActivity : AppCompatActivity() {
             .update("status",status)
             .addOnSuccessListener {
                 Timber.d("Sukses update status applicant ke firestore")
+                onBackPressed()
             }
             .addOnFailureListener { e ->
                 Timber.tag(ContentValues.TAG).w(e, "Gagal update status applicant ke firestore")
@@ -89,6 +88,7 @@ class DetailApplicantActivity : AppCompatActivity() {
             .update("status",status)
             .addOnSuccessListener {
                 Timber.d("Sukses update status applicant ke firestore")
+                onBackPressed()
 
             }
             .addOnFailureListener { e ->
@@ -97,6 +97,22 @@ class DetailApplicantActivity : AppCompatActivity() {
     }
 
     private fun setProfile(id: String){
+        val id_applicant = intent.getStringExtra("id_applied_job")
+        service.getStatus(id_applicant!!)
+            .get()
+            .addOnSuccessListener {
+                var status = it.getString("status").toString()
+                if (status == "Accepted"){
+                    binding.btnAcc.isVisible = false
+                    binding.btnReject.isVisible = false
+                    binding.tvAccept.isVisible = true
+                } else if (status == "Rejected") {
+                    binding.btnAcc.isVisible = false
+                    binding.btnReject.isVisible = false
+                    binding.tvReject.isVisible = true
+                }
+            }
+
 
         binding.apply {
             rvListEducation.apply {

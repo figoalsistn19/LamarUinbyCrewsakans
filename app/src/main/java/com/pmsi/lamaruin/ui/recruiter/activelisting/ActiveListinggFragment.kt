@@ -62,12 +62,15 @@ class ActiveListinggFragment : Fragment() {
     }
 
     private fun getJobByRecruiterId(){
+        binding.progressBar.isVisible = true
+        var date = getDateToday()
+
         val id_user = LoginPref(requireActivity()).getIdMhs().toString()
         service.getJobByRecruiterId(id_user)
                 .addSnapshotListener { value, e ->
                     if (e != null) {
                         Timber.d("Listen failed.")
-//                    binding.progressBar.isVisible = false
+                        binding.progressBar.isVisible = false
                         return@addSnapshotListener
                     }
                     var itemJob = ArrayList<ItemJob>()
@@ -92,24 +95,33 @@ class ActiveListinggFragment : Fragment() {
                                         company_name = it.getString("company_name")
                                         company_city = it.getString("company_address")
 
-                                        var job = ItemJob(id_job,id_recruiter,name,cat,company_name,company_city,foto,tenggats)
-                                        itemJob.add(job)
+                                        if(tenggat != null){
+                                            if(tenggat > date){
+                                                var job = ItemJob(id_job,id_recruiter,name,cat,company_name,company_city,foto,tenggats)
+                                                itemJob.add(job)
+                                            }
+                                        }
 
                                         if (itemJob.isEmpty()) {
                                             binding.tvNothingJobAdded.isVisible = true
+                                            binding.progressBar.isVisible = false
                                         } else {
                                             activeListinggAdapter.setData(itemJob)
+                                            binding.progressBar.isVisible = false
 
                                         }
                                     }
                         }
-
-                        // buat sementara get company profile
-//                    foto = "https://karier.uinjkt.ac.id/public/main/1616805063_logo_portrait.png"
-//                    company_name = "Pusat Karier UIN Jakarta"
-//                    company_city = "Tanggerang Selatan"
+                    }
+                    if (value.isEmpty){
+                        binding.progressBar.isVisible = false
                     }
                 }
+    }
+
+    fun getDateToday(): Long {
+        var dueDateMillis: Long = System.currentTimeMillis()
+        return dueDateMillis
     }
 
     private fun changeDate(date: Long) : String{

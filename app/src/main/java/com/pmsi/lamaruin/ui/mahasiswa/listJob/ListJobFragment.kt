@@ -100,7 +100,7 @@ class ListJobFragment : Fragment() {
                 interest = it.getString("interest")
 
                 // get job
-                if (interest == ""){
+                if (interest == "" || interest.isNullOrEmpty()){
                     getJobWithoutInterest()
                 } else if (interest != ""){
                     getJobWithInterest(interest!!)
@@ -264,18 +264,25 @@ class ListJobFragment : Fragment() {
                                         listJob.add(job)
                                     }
                                 }
+                                listJobAdapter.setData(listJob)
+                                binding.progressBar.isVisible = false
 
-                                if (listJob.isEmpty()) {
-                                    binding.tvNothingJob.isVisible = true
-                                    binding.rvOtherJobList.isVisible = false
-                                    binding.progressBar.isVisible = false
-                                } else {
-                                    listJobAdapter.setData(listJob)
-                                    binding.progressBar.isVisible = false
-                                }
+//                                if (listJob.isEmpty()) {
+//                                    binding.tvNothingJob.isVisible = true
+//                                    binding.rvOtherJobList.isVisible = false
+//                                    binding.progressBar.isVisible = false
+//                                } else {
+//                                    listJobAdapter.setData(listJob)
+//                                    binding.progressBar.isVisible = false
+//                                }
                             }
                     }
-            }
+                }
+                if(value.isEmpty){
+                    binding.tvNothingJob.isVisible = true
+                    binding.rvOtherJobList.isVisible = false
+                    binding.progressBar.isVisible = false
+                }
             }
     }
 

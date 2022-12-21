@@ -118,7 +118,7 @@ class ApplicantListActivity() : AppCompatActivity() {
             .addSnapshotListener { value, e ->
                 if (e != null) {
                     Timber.d("Listen failed.")
-//                    binding.progressBar.isVisible = false
+                    binding.progressBar.isVisible = false
                     return@addSnapshotListener
                 }
                 var itemJob = ArrayList<ItemListPelamar>()
@@ -135,6 +135,7 @@ class ApplicantListActivity() : AppCompatActivity() {
                         nama = nama,
                         foto = foto,
                         email = email,
+                        id_job = id_job,
                         id_applied_job = id_applied_job
                     )
                     itemJob.add(job)
@@ -146,6 +147,9 @@ class ApplicantListActivity() : AppCompatActivity() {
                         applicantListAdapter.setData(itemJob)
                         binding.progressBar.isVisible = false
                     }
+                }
+                if (value.isEmpty){
+                    binding.progressBar.isVisible = false
                 }
             }
     }

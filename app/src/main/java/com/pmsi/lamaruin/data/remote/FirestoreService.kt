@@ -52,6 +52,10 @@ class FirestoreService {
             .collection("pelamar")
             .whereEqualTo("id_pelamar", id_student)
 
+    fun getStatus(id_applicant: String) =
+        db.collection("AppliedJob")
+            .document(id_applicant)
+
     fun getPelamar(id_job: String) =
         db.collection("JobVacancy")
             .document(id_job)

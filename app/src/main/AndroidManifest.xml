@@ -11,9 +11,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon_app"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/icon_app"
         android:supportsRtl="true"
         android:theme="@style/Theme.LamarUIN"
         tools:targetApi="31">
@@ -71,12 +71,14 @@
             android:name=".ui.mahasiswa.listJob.detail.DetailJobActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.mahasiswa.listJob.search.SearchJobActivity"
+            android:exported="false" />
+        <activity
             android:name=".register.RegisterMahasiswaActivity"
             android:exported="true" />
         <activity
             android:name=".WelcomeActivity"
             android:exported="true"
-            android:label="@string/title_activity_welcome"
             android:theme="@style/Theme.LamarUIN.NoActionBar">
 
 
