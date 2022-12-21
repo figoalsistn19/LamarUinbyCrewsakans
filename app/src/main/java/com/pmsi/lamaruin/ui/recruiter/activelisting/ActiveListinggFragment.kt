@@ -131,5 +131,9 @@ class ActiveListinggFragment : Fragment() {
         return date
     }
 
+    override fun onResume() {
+        super.onResume()
+        getJobByRecruiterId()
+    }
 
 }

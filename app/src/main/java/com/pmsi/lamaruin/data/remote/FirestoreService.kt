@@ -37,6 +37,10 @@ class FirestoreService {
             .collection("education").document(id_edu)
             .delete()
 
+    fun hapusJob (id_job: String) =
+        db.collection("JobVacancy").document(id_job)
+            .delete()
+
     fun hapusExp (id_student: String, id_exp: String) =
         db.collection("student").document(id_student)
             .collection("experience").document(id_exp)
