@@ -117,6 +117,7 @@ class ListJobFragment : Fragment() {
             binding.tvHello.isVisible = false
         }
     }
+    //oke
 
     fun getFirstName(name: String): String {
         val names = name.trim().split(Regex("\\s+"))
