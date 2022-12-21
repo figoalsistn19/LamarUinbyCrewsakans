@@ -137,57 +137,57 @@ class DetailJobActivity : AppCompatActivity() {
                         foto_student = it.getString("foto").toString()
                     }
 
-                // get detail company
-                service.getRecruiterById(id_recruiter!!)
-                    .get()
-                    .addOnSuccessListener {
-                        foto_company = it.getString("foto").toString()
-                        nama_company = it.getString("company_name").toString()
-                    }
-
                 // get posisi job
                 service.getJobById(id_job!!)
                     .get()
                     .addOnSuccessListener {
                         posisi_job = it.getString("job_name").toString()
 
-                        val item_list_pelamar = ItemListPelamar(
-                            id_applied_job = id_job,
-                            id_pelamar = id_student,
-                            foto = foto_student,
-                            email = email_student,
-                            nama = nama_student
-                        )
+                        // get detail company
+                        service.getRecruiterById(id_recruiter!!)
+                            .get()
+                            .addOnSuccessListener {
+                                foto_company = it.getString("foto").toString()
+                                nama_company = it.getString("company_name").toString()
 
-                        val applied_job = AppliedJob(
-                            status = "Pending",
-                            id_student = id_student,
-                            id_job = id_job,
-                            company_name = nama_company,
-                            company_photo = foto_company,
-                            job_title = posisi_job
+                                val item_list_pelamar = ItemListPelamar(
+                                    id_applied_job = id_job,
+                                    id_pelamar = id_student,
+                                    foto = foto_student,
+                                    email = email_student,
+                                    nama = nama_student
+                                )
 
-                        )
+                                val applied_job = AppliedJob(
+                                    status = "Pending",
+                                    id_student = id_student,
+                                    id_job = id_job,
+                                    company_name = nama_company,
+                                    company_photo = foto_company,
+                                    job_title = posisi_job
 
-                        // create collection applied job
-                        service.addAppliedJob(applied_job) {
+                                )
 
-                            // update collection job
-                            service.addPelamar(id_job!!, item_list_pelamar)
+                                // create collection applied job
+                                service.addAppliedJob(applied_job) {
 
-                            binding.progressBar.isVisible = false
+                                    // update collection job
+                                    service.addPelamar(id_job!!, item_list_pelamar)
 
-                            val i = Intent(this, MainMahasiswaActivity::class.java)
-                            i.flags =
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                            startActivity(i)
+                                    binding.progressBar.isVisible = false
 
-                            Toast.makeText(
-                                this,
-                                "Lamaran Terkirim",
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
+                                    val i = Intent(this, MainMahasiswaActivity::class.java)
+                                    i.flags =
+                                        Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                                    startActivity(i)
+
+                                    Toast.makeText(
+                                        this,
+                                        "Lamaran Terkirim",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
+                            }
                     }
             }
         }

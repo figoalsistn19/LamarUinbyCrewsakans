@@ -94,7 +94,6 @@ class ListJobFragment : Fragment() {
     private fun setProfile(id_user: String){
         var interest: String? = ""
 
-        // get interest
         service.searchUsersById(id_user)
             .get()
             .addOnSuccessListener {

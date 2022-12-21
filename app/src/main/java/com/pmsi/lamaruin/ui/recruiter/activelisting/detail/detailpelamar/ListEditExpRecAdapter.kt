@@ -2,6 +2,7 @@ package com.pmsi.lamaruin.ui.recruiter.activelisting.detail.detailpelamar
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.pmsi.lamaruin.data.model.Experience
 import com.pmsi.lamaruin.databinding.ItemListEditExperienceBinding
@@ -25,6 +26,7 @@ class ListEditExpRecAdapter constructor(
             binding.namaPerusahaan.text = data.title
             binding.posisi.text = data.role
             binding.deskripsiExperience.text = data.experience_desc
+            binding.btnHapus.isVisible = false
         }
     }
 

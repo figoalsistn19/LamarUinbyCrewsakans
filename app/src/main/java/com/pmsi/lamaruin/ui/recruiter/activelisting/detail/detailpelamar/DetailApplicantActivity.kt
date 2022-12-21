@@ -1,12 +1,19 @@
 package com.pmsi.lamaruin.ui.recruiter.activelisting.detail.detailpelamar
 
+import android.app.DownloadManager
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import coil.transform.CircleCropTransformation
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.pmsi.lamaruin.data.LoginPref
 import com.pmsi.lamaruin.data.model.Education
 import com.pmsi.lamaruin.data.model.Experience
@@ -24,6 +31,8 @@ class DetailApplicantActivity : AppCompatActivity() {
 
     @Inject
     lateinit var service: FirestoreService
+
+    val storage = Firebase.storage("gs://lamaruin-92998.appspot.com")
 
     private val listEditEduRecAdapter : ListEditEduRecAdapter by lazy {
         ListEditEduRecAdapter()
@@ -49,10 +58,15 @@ class DetailApplicantActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+        binding.tvNamaCV.setOnClickListener{
+                getUrlCV(id)
+        }
+
         binding.btnReject.setOnClickListener {
             statusApplicantRej()
             onBackPressed()
         }
+
     }
 
     private fun statusApplicantAcc(){
@@ -83,6 +97,21 @@ class DetailApplicantActivity : AppCompatActivity() {
     }
 
     private fun setProfile(id: String){
+
+        binding.apply {
+            rvListEducation.apply {
+                layoutManager = LinearLayoutManager(this@DetailApplicantActivity)
+                adapter = listEditEduRecAdapter
+                setHasFixedSize(true)
+            }
+
+            rvListExperience.apply {
+                layoutManager = LinearLayoutManager(this@DetailApplicantActivity)
+                adapter = listEditExpRecAdapter
+                setHasFixedSize(true)
+            }
+        }
+
         binding.progressBar.isVisible = true
         service.searchUsersById(id)
             .get()
@@ -183,9 +212,68 @@ class DetailApplicantActivity : AppCompatActivity() {
                 binding.progressBar.isVisible = false
             }
     }
+
+    private fun getUrlCV(id: String) {
+
+        service.searchUsersById(id)
+            .get()
+            .addOnSuccessListener {
+                var url_cv = it.getString("url_cv")
+                var nama_cv = it.getString("nama_cv")
+                storage.getReferenceFromUrl(url_cv!!)
+                    .downloadUrl.addOnSuccessListener {
+                        var urls = it.toString()
+                        downloadFile(this@DetailApplicantActivity, nama_cv!!,
+                            Environment.DIRECTORY_DOWNLOADS, urls)
+                    }.addOnFailureListener {
+                        // Handle any errors
+                    }
+            }
+
+
+//        val rootPath = File(Environment.getExternalStorageDirectory(), "file_name")
+//        if (!rootPath.exists()) {
+//            rootPath.mkdirs()
+//        }
+//        val localFile = File(rootPath, "fileCv.txt")
+//        var id_user = LoginPref(requireActivity()).getIdMhs().toString()
+//
+//        service.searchUsersById(id_user)
+//            .get()
+//            .addOnSuccessListener {
+//                var url_cv = it.getString("url_cv")
+//                storage.getReferenceFromUrl(url_cv!!)
+//                    .getFile(localFile).addOnSuccessListener {
+//                        Log.e("firebase ", ";local tem file created  created $localFile")
+//                    }.addOnFailureListener {
+//                        fun onFailure(@NonNull exception: Exception) {
+//                            Log.e("firebase ", ";local tem file not created  created $exception")
+//                        }
+//                    }
+//            }
+    }
+
     override fun onResume() {
         super.onResume()
         val id = intent.getStringExtra("id_pelamar")
         setProfile(id!!)
+    }
+
+    private fun downloadFile(context: Context, fileName: String, destinationDirectory: String, urls: String) {
+        var url = Uri.parse(urls)
+        var downloadManager : DownloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+        var request = DownloadManager.Request(url)
+
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+        request.setDestinationInExternalFilesDir(context, destinationDirectory, fileName)
+
+        downloadManager.enqueue(request)
+//        url.openStream().use {
+//            Channels.newChannel(it).use { rbc ->
+//                FileOutputStream(outputFileName).use { fos ->
+//                    fos.channel.transferFrom(rbc, 0, Long.MAX_VALUE)
+//                }
+//            }
+//        }
     }
 }

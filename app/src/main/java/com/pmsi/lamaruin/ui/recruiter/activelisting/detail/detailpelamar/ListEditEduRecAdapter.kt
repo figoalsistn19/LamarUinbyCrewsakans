@@ -2,6 +2,7 @@ package com.pmsi.lamaruin.ui.recruiter.activelisting.detail.detailpelamar
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.pmsi.lamaruin.data.model.Education
 import com.pmsi.lamaruin.databinding.ItemListEditEducationBinding
@@ -25,6 +26,7 @@ class ListEditEduRecAdapter constructor(
             binding.degree.text = data.degree
             binding.universitas.text = data.school
             binding.year.text = "${data.education_start_date} - ${data.education_end_date}"
+            binding.btnHapus.isVisible = false
         }
     }
 
