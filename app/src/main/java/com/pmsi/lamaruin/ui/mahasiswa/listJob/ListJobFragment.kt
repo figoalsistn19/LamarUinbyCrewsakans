@@ -30,6 +30,8 @@ class ListJobFragment : Fragment() {
 
     private lateinit var binding: FragmentListJobBinding
 
+//    test
+
     private val listJobAdapter: ListJobAdapter by lazy {
         ListJobAdapter {
             Intent(requireActivity(), DetailJobActivity::class.java).apply {
