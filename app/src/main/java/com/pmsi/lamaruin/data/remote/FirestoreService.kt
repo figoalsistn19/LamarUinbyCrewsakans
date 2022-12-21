@@ -132,6 +132,10 @@ class FirestoreService {
         db.collection("AppliedJob")
             .whereEqualTo("id_student", id_student)
 
+    fun updateApplicant(id: String) =
+        db.collection("AppliedJob")
+            .document(id)
+
     fun getJobById(id: String) =
         db.collection("JobVacancy")
             .document(id)

@@ -9,7 +9,7 @@
         android:id="@+id/listJobFragment2"
         android:name="com.pmsi.lamaruin.ui.recruiter.listJob.ListJobRecFragment"
         android:label="@string/activelisting"
-        tools:layout="@layout/fragment_list_job_rec"/>
+        tools:layout="@layout/fragment_list_job_rec" />
     <fragment
         android:id="@+id/profileRecFragment"
         android:name="com.pmsi.lamaruin.ui.recruiter.profile.ProfileRecrFragment"

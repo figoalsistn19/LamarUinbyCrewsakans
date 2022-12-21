@@ -23,6 +23,7 @@ class ApplicantListActivity() : AppCompatActivity() {
         ApplicantListAdapter{
             Intent(this@ApplicantListActivity, DetailApplicantActivity::class.java).apply {
                 putExtra("id_pelamar", it.id_pelamar)
+                putExtra("id_applied_job",it.id_applied_job)
                 startActivity(this)
             }
         }
@@ -124,6 +125,7 @@ class ApplicantListActivity() : AppCompatActivity() {
                 for (doc in value!!) {
                     var id_pelamar = doc.getString("id_pelamar")
                     var id_job = doc.getString("id_job")
+                    var id_applied_job = doc.getString("id_applied_job")
                     var foto = doc.getString("foto")
                     var nama = doc.getString("nama")
                     var email = doc.getString("email")
@@ -132,7 +134,8 @@ class ApplicantListActivity() : AppCompatActivity() {
                         id_pelamar = id_pelamar,
                         nama = nama,
                         foto = foto,
-                        email = email
+                        email = email,
+                        id_applied_job = id_applied_job
                     )
                     itemJob.add(job)
 
@@ -145,8 +148,5 @@ class ApplicantListActivity() : AppCompatActivity() {
                     }
                 }
             }
-
-
-
     }
 }
