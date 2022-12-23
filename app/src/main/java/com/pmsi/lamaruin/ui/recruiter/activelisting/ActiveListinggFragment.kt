@@ -103,7 +103,6 @@ class ActiveListinggFragment : Fragment() {
                                         }
 
                                         if (itemJob.isEmpty()) {
-                                            binding.tvNothingJobAdded.isVisible = true
                                             binding.progressBar.isVisible = false
                                         } else {
                                             activeListinggAdapter.setData(itemJob)
@@ -115,7 +114,6 @@ class ActiveListinggFragment : Fragment() {
                     }
                     if (value.isEmpty){
                         binding.progressBar.isVisible = false
-                        binding.tvNothingJobAdded.isVisible = true
                     }
                 }
     }
@@ -131,5 +129,9 @@ class ActiveListinggFragment : Fragment() {
         return date
     }
 
+    override fun onResume() {
+        super.onResume()
+        getJobByRecruiterId()
+    }
 
 }

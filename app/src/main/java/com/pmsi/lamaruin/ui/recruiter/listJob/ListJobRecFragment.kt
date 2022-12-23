@@ -117,7 +117,6 @@ class ListJobRecFragment : Fragment() {
                                 itemJob.add(job)
 
                                 if (itemJob.isEmpty()) {
-                                    binding.tvNothingJob.isVisible = true
                                 } else {
                                     activeListinggAdapter.setData(itemJob)
 
@@ -131,7 +130,7 @@ class ListJobRecFragment : Fragment() {
 //                    company_city = "Tanggerang Selatan"
                 }
                         if (value.isEmpty){
-                            binding.tvNothingJob.isVisible = true
+
                         }
             }
     }

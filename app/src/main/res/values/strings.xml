@@ -45,4 +45,6 @@
     <string name="alert_logout_title">Logout</string>
     <string name="are_you_sure_logout">Apa anda yakin ingin logout?</string>
     <string name="id_account">id_account</string>
+    <string name="alert_delete_job">Hapus Lowongan</string>
+    <string name="are_you_sure_delete_job">Apa anda yakin ingin menghapus lowongan?</string>
 </resources>

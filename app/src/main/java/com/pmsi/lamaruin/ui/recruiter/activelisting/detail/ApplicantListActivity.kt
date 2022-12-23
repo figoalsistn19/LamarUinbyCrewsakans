@@ -1,14 +1,21 @@
 package com.pmsi.lamaruin.ui.recruiter.activelisting.detail
 
+import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
+import com.pmsi.lamaruin.MainRecuiterActivity
+import com.pmsi.lamaruin.R
+import com.pmsi.lamaruin.WelcomeActivity
+import com.pmsi.lamaruin.data.LoginPref
 import com.pmsi.lamaruin.data.model.ItemListPelamar
 import com.pmsi.lamaruin.data.remote.FirestoreService
 import com.pmsi.lamaruin.databinding.ActivityApplicantListBinding
+import com.pmsi.lamaruin.ui.mahasiswa.listJob.detail.CustomDialog
 import com.pmsi.lamaruin.ui.recruiter.activelisting.detail.detailpelamar.DetailApplicantActivity
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -63,6 +70,12 @@ class ApplicantListActivity() : AppCompatActivity() {
             setProfile(id_job, id_recruiter)
         }
 
+        binding.btnHapus.setOnClickListener {
+           if(id_job != null){
+               deletejob(id_job)
+           }
+        }
+
         binding.apply {
             rvApplicantList.apply {
                 layoutManager = LinearLayoutManager(context)
@@ -73,6 +86,31 @@ class ApplicantListActivity() : AppCompatActivity() {
 
         getPelamarByJobId()
     }
+
+    private fun deletejob(id_job: String){
+
+        CustomDialog(this).show(
+            getString(R.string.alert_delete_job),
+            getString(R.string.are_you_sure_delete_job)
+        ) {
+            if (it.toString() == "YES") {
+                service.hapusJob(id_job)
+                    .addOnSuccessListener {
+                        Log.d(ContentValues.TAG, "DocumentSnapshot successfully deleted!")
+                        val i = Intent(this, MainRecuiterActivity::class.java)
+                        i.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                        startActivity(i)
+                    }
+                    .addOnFailureListener { e ->
+                        Log.w(
+                            ContentValues.TAG,
+                            "Error deleting document",
+                            e
+                        )
+                    }
+            }
+            }
+        }
 
     private fun setProfile(id_job: String, id_recruiter: String){
 
