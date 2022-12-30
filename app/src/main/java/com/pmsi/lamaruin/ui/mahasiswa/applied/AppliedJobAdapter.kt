@@ -37,7 +37,7 @@ class AppliedJobAdapter constructor(
                 binding.appliedMessage.text = "Kindly wait."
                 binding.appliedStatus.setTextColor(Color.parseColor("#DBD200"))
             } else if (status == "Accepted") {
-                binding.appliedMessage.text = "Please check your email."
+                binding.appliedMessage.text = "You have passed the administrative stage, Please wait for the recruiter to contact you for further instructions."
                 binding.appliedStatus.setTextColor(Color.parseColor("#0DD109"))
             } else if (status == "Rejected"){
                 binding.appliedMessage.text = "Better luck next time!"

@@ -235,31 +235,39 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="20dp"/>
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="10dp"
                 android:layout_marginHorizontal="20dp">
+
                 <TextView
                     android:id="@+id/tvNamaCV"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/custom_rounded_stroke_grey"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="5dp"
                     android:singleLine="true"
-                    tools:text="namafile.pdf"
-                    android:layout_gravity="center_vertical"
-                    android:background="@drawable/custom_rounded_stroke_grey"/>
-                <ImageView
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="namafile.pdf" />
+
+                <ImageButton
                     android:id="@+id/btnAddCV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:src="@drawable/ic_baseline_upload_file_24"
                     android:background="@color/purple_500"
-                    android:padding="5dp"/>
-            </LinearLayout>
+                    android:padding="5dp"
+                    android:src="@drawable/ic_baseline_upload_file_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tvNamaCV"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
