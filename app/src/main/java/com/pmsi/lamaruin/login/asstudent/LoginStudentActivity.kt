@@ -33,6 +33,11 @@ class LoginStudentActivity : AppCompatActivity() {
             login()
         }
 
+        binding.btnForgot.setOnClickListener {
+            val i = Intent(this, ForgotPasswordStudentActivity::class.java)
+            startActivity(i)
+        }
+
     }
 
     private fun login(){

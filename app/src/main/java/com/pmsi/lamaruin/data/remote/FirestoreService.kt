@@ -84,6 +84,24 @@ class FirestoreService {
             .whereEqualTo("email", email)
             .whereEqualTo("password_recruiter", password)
 
+    fun checkEmailHpStudent(email: String, hp : String) =
+        db.collection("student")
+            .whereEqualTo("email", email)
+            .whereEqualTo("phone", hp)
+
+    fun updatePasswordStudent(id_student: String, new_password: String) =
+        db.collection("student").document(id_student)
+            .update("password_student", new_password)
+
+    fun checkEmailHpRecruiter(email: String, hp : String) =
+        db.collection("recruiter")
+            .whereEqualTo("email", email)
+            .whereEqualTo("no_hp", hp)
+
+    fun updatePasswordRecruiter(id_recruiter: String, new_password: String) =
+        db.collection("recruiter").document(id_recruiter)
+            .update("password_recruiter", new_password)
+
     fun addStudents(student: CreateStudent) =
         db.collection("student")
             .document(student.id_student)

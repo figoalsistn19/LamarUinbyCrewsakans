@@ -11,6 +11,7 @@ import com.pmsi.lamaruin.R
 import com.pmsi.lamaruin.data.LoginPref
 import com.pmsi.lamaruin.data.remote.FirestoreService
 import com.pmsi.lamaruin.databinding.ActivityLoginRecruiterBinding
+import com.pmsi.lamaruin.login.asstudent.ForgotPasswordStudentActivity
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import javax.inject.Inject
@@ -32,6 +33,11 @@ class LoginRecruiterActivity : AppCompatActivity() {
 
         binding.btnLoginrec.setOnClickListener {
             login()
+        }
+
+        binding.btnForgot.setOnClickListener {
+            val i = Intent(this, ForgotPasswordRecruiterActivity::class.java)
+            startActivity(i)
         }
     }
 

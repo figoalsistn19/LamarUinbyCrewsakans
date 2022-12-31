@@ -18,14 +18,20 @@
         android:theme="@style/Theme.LamarUIN"
         tools:targetApi="31">
         <activity
-            android:name=".NewPasswordActivity"
+            android:name=".NewPasswordRecruiterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ForgotPasswordRecruiterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".login.asstudent.NewPasswordStudentActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ForgotPasswordActivity"
+            android:name=".login.asstudent.ForgotPasswordStudentActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
